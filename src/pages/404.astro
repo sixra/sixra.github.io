@@ -1,0 +1,76 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404: Not Found - Ratko Simidzija"
+  description="Page not found"
+>
+  <div class="not-found">
+    <h1>404</h1>
+    <p class="message">Oops! The page you're looking for doesn't exist.</p>
+    <div class="links">
+      <a href="/" class="link-button">Go Home</a>
+      <a href="/blog" class="link-button">View Blog</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50vh;
+    padding: var(--space-2xl) 0;
+  }
+
+  h1 {
+    font-size: 6rem;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, var(--color-text) 0%, var(--color-link) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .message {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+    max-width: 500px;
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .link-button {
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--color-bg-accent);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-fast);
+    display: inline-block;
+  }
+
+  .link-button:hover {
+    border-color: var(--color-link);
+    background-color: var(--color-bg-code);
+  }
+
+  @media (max-width: var(--breakpoint-mobile)) {
+    h1 {
+      font-size: 4rem;
+    }
+
+    .message {
+      font-size: var(--font-size-md);
+    }
+  }
+</style>
