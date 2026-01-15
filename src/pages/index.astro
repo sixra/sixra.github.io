@@ -4,6 +4,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import ArrowCard from '@components/ArrowCard.astro';
 import ExperienceItem from '@components/ExperienceItem.astro';
 import SectionHeader from '@components/SectionHeader.astro';
+import SocialIcon from '@components/SocialIcon.astro';
 
 const posts = (await getPublishedPosts()).slice(0, 3);
 ---
@@ -25,6 +26,16 @@ const posts = (await getPublishedPosts()).slice(0, 3);
         free time, I enjoy building projects with Astro and diving deeper into Web Accessibility
         standards - always eager to learn and grow as a developer.
       </p>
+    </div>
+    <div class="quick-links">
+      <SocialIcon platform="github" href="https://github.com/sixra" />
+      <SocialIcon platform="linkedin" href="https://www.linkedin.com/in/ratkosimidzija" />
+      <a href="mailto:comm.sr@tuta.com" class="email-link" aria-label="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+      </a>
     </div>
   </section>
 
@@ -130,6 +141,28 @@ const posts = (await getPublishedPosts()).slice(0, 3);
 
   .bio p {
     margin-bottom: var(--space-md);
+  }
+
+  .quick-links {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .email-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    color: var(--color-text-muted);
+  }
+
+  .email-link:hover {
+    color: var(--color-link);
+    background-color: var(--color-bg-accent);
   }
 
   .posts-list {
