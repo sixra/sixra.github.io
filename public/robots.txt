@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sixra.github.io/sitemap-index.xml
