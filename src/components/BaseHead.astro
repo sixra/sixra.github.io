@@ -90,7 +90,12 @@ const ogImage = image ? new URL(image, Astro.site) : null;
 <script is:inline type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${Astro.site}#person`,
+  identifier: "ratko-simidzija",
   name: "Ratko Simidzija",
+  givenName: "Ratko",
+  familyName: "Simidzija",
+  email: "comm.sr@tuta.com",
   jobTitle: "JavaScript Developer",
   description: "JavaScript Developer specializing in React, TypeScript, and modern web development. Five years of experience building e-commerce platforms, trading applications, and web solutions.",
   worksFor: {

@@ -1,0 +1,21 @@
+Ratko Simidzija is a JavaScript Developer at ePages, specializing in React, TypeScript, Remix, and Astro.
+
+Contact: comm.sr@tuta.com
+Website: https://sixra.github.io
+LinkedIn: https://www.linkedin.com/in/ratkosimidzija
+GitHub: https://github.com/sixra
+Twitter: https://x.com/sixra01
+
+Professional Experience:
+- JavaScript Developer at ePages (Jan 2024 - Present)
+  Working with React 19, Remix, Redux, and TypeScript on e-commerce platforms
+- Frontend Developer at FxPro (Feb 2022 - Oct 2023)
+  Built trading platforms and financial applications using Angular, Svelte, and TypeScript
+
+Skills: React, Remix, TypeScript, Redux, Angular, Svelte, Astro, Node.js, Jest, Cypress, Playwright, JavaScript, HTML, CSS, Webpack, Git, Web Accessibility, Responsive Design, E2E Testing
+
+Education:
+- Full Stack Web Developer - DCI Digital Career Institute (Nov 2020 - Dec 2021)
+- Bachelor of Business Administration - MBS Business School (2012 - 2016)
+
+Portfolio includes work on e-commerce platforms, trading applications, and modern web development projects.
