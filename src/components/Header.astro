@@ -5,7 +5,9 @@ const currentPath = Astro.url.pathname;
 <header>
   <nav class="container">
     <div class="nav-wrapper">
-      <a href="/" class="site-name">RS</a>
+      <a href="/" class="logo-link">
+        <img src="/sr-logo-1100x500.png" alt="Ratko Simidzija" class="site-logo" />
+      </a>
       <div class="nav-links">
         <a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a>
         <a href="/blog" class={currentPath.startsWith('/blog') ? 'active' : ''}>Blog</a>
@@ -48,14 +50,19 @@ const currentPath = Astro.url.pathname;
     gap: var(--space-md);
   }
 
-  .site-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text);
+  .logo-link {
+    display: flex;
+    align-items: center;
+    transition: opacity var(--transition-fast);
   }
 
-  .site-name:hover {
-    color: var(--color-link);
+  .logo-link:hover {
+    opacity: 0.8;
+  }
+
+  .site-logo {
+    height: 2.55rem;
+    width: auto;
   }
 
   .nav-links {

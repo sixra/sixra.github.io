@@ -19,13 +19,22 @@ const {
   type = 'website'
 } = Astro.props;
 
-const ogImage = image ? new URL(image, Astro.site) : null;
+// Use provided image or default to OG image
+const defaultOgImage = new URL('/sr-logo-1200x630.png', Astro.site);
+const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
@@ -41,7 +50,9 @@ const ogImage = image ? new URL(image, Astro.site) : null;
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="Ratko Simidzija" />
 
 {publishedTime && <meta property="article:published_time" content={publishedTime} />}
@@ -52,7 +63,7 @@ const ogImage = image ? new URL(image, Astro.site) : null;
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-{ogImage && <meta property="twitter:image" content={ogImage} />}
+<meta property="twitter:image" content={ogImage} />
 <meta name="twitter:creator" content="@sixra01" />
 <meta name="twitter:site" content="@sixra01" />
 

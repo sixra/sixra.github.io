@@ -1,0 +1,23 @@
+{
+  "name": "Ratko Simidzija | JavaScript Developer",
+  "short_name": "Ratko Simidzija",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#8b9dff",
+  "background_color": "#131418",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "JavaScript Developer specializing in React, TypeScript, and modern web development"
+}

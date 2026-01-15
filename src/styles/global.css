@@ -6,8 +6,8 @@
   --color-bg-code: #1a1b21;
   --color-text: #c7bebe;
   --color-text-muted: #8b8888;
-  --color-link: #ffbd59;
-  --color-link-hover: #f5a84a;
+  --color-link: #8b9dff;
+  --color-link-hover: #7b8fff;
   --color-border: #2a2c34;
   --color-bg-rgb: 19, 20, 24; /* For rgba() transparency */
 
@@ -21,9 +21,9 @@
   --font-size-xs: 0.8125rem; /* 13px */
   --font-size-sm: 0.875rem; /* 14px */
   --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.25rem; /* 20px */
-  --font-size-xl: 1.5rem; /* 24px */
-  --font-size-2xl: 2rem; /* 32px */
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
 
   /* Spacing - Astro-Nano Match (spacious, generous) */
   --space-xs: 0.5rem; /* 8px   | Within components */
@@ -36,7 +36,7 @@
   /* Layout */
   --max-width: 700px;
   --content-width: 42rem;
-  --icon-size: 2.5rem; /* 40px | Icon/button touch targets */
+  --icon-size: 2.5rem;
   --border-radius: 4px;
 
   /* Transitions */
@@ -129,7 +129,7 @@ a:focus-visible {
 code {
   font-family: var(--font-mono);
   font-size: 0.9em;
-  background-color: rgba(255, 189, 89, 0.08);
+  background-color: rgba(139, 157, 255, 0.08);
   padding: 0.2em 0.4em;
   border-radius: var(--border-radius);
   color: #e8c896;
