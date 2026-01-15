@@ -1,0 +1,95 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header>
+  <nav class="container">
+    <div class="nav-wrapper">
+      <a href="/" class="site-name">RS</a>
+      <div class="nav-links">
+        <a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a>
+        <a href="/blog" class={currentPath.startsWith('/blog') ? 'active' : ''}>Blog</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 0;
+  }
+
+  @supports (backdrop-filter: blur(10px)) {
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(var(--color-bg-rgb), 0.75);
+      backdrop-filter: blur(10px) saturate(200%);
+      -webkit-backdrop-filter: blur(10px) saturate(200%);
+    }
+  }
+
+  @supports not (backdrop-filter: blur(10px)) {
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--color-bg);
+    }
+  }
+
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .site-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .site-name:hover {
+    color: var(--color-link);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .nav-links a {
+    position: relative;
+    padding: var(--space-xs) 0;
+  }
+
+  .nav-links a.active {
+    color: var(--color-link);
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-link);
+  }
+
+  @media (max-width: 768px) {
+    .nav-wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav-links {
+      width: 100%;
+    }
+  }
+</style>

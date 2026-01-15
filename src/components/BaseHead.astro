@@ -1,0 +1,172 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  type?: 'website' | 'article';
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const {
+  title,
+  description,
+  image,
+  publishedTime,
+  modifiedTime,
+  type = 'website'
+} = Astro.props;
+
+const ogImage = image ? new URL(image, Astro.site) : null;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:site_name" content="Ratko Simidzija" />
+
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+{ogImage && <meta property="twitter:image" content={ogImage} />}
+
+<!-- RSS Feed -->
+<link rel="alternate" type="application/rss+xml" title="Ratko Simidzija" href="/rss.xml" />
+
+<!-- Sitemap -->
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- JSON-LD Structured Data -->
+{type === 'article' && publishedTime && (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: description,
+    datePublished: publishedTime,
+    dateModified: modifiedTime || publishedTime,
+    author: {
+      "@type": "Person",
+      name: "Ratko Simidzija",
+      url: Astro.site?.toString()
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Ratko Simidzija"
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalURL.toString()
+    }
+  })} />
+)}
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ratko Simidzija",
+  jobTitle: "JavaScript Developer",
+  worksFor: {
+    "@type": "Organization",
+    name: "ePages"
+  },
+  url: Astro.site?.toString(),
+  sameAs: [
+    "https://github.com/sixra",
+    "https://linkedin.com/in/ratkosimidzija"
+  ]
+})} />
+
+<!-- View Transitions (Astro 5.x) -->
+<meta name="view-transition" content="same-origin" />
+
+<!-- Page Initialization Scripts -->
+<script is:inline>
+  function initPage() {
+    // Text reveal animations
+    const animateElements = document.querySelectorAll('.animate');
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add('show');
+      }, index * 150);
+    });
+
+    // Copy link functionality
+    const headings = document.querySelectorAll('h2[id]');
+    headings.forEach(heading => {
+      // Add keyboard accessibility attributes
+      heading.setAttribute('tabindex', '0');
+      heading.setAttribute('role', 'button');
+      heading.setAttribute('aria-label', `Copy link to ${heading.textContent}`);
+
+      function handleCopy() {
+        const id = this.getAttribute('id');
+        if (id) {
+          const url = `${window.location.origin}${window.location.pathname}#${id}`;
+
+          // Update URL without scroll jump
+          window.history.pushState({}, '', `#${id}`);
+
+          // Copy to clipboard
+          navigator.clipboard.writeText(url).then(() => {
+            showToast('Link copied to clipboard!');
+          }).catch(err => {
+            console.error('Failed to copy link:', err);
+            showToast('Failed to copy link', true);
+          });
+        }
+      }
+
+      // Mouse click support
+      heading.addEventListener('click', handleCopy);
+
+      // Keyboard support
+      heading.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCopy.call(this);
+        }
+      });
+    });
+  }
+
+  function showToast(message, isError = false) {
+    const toast = document.getElementById('globalCopyToast');
+    if (toast) {
+      toast.textContent = message;
+      toast.classList.toggle('error', isError);
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+  }
+
+  // Single initialization point for all page scripts
+  document.addEventListener('DOMContentLoaded', initPage);
+  document.addEventListener('astro:after-swap', initPage);
+</script>
