@@ -1,0 +1,70 @@
+---
+interface Props {
+  organization: string;
+  position: string;
+  dateRange: string;
+  highlights?: string[];
+  type: 'work' | 'education';
+}
+
+const { organization, position, dateRange, highlights, type } = Astro.props;
+const orgClass = type === 'work' ? 'company' : 'school';
+const posClass = type === 'work' ? 'role' : 'degree';
+---
+
+<li>
+  <div class="experience-item">
+    <div class={orgClass}>{organization}</div>
+    <div class={posClass}>{position}</div>
+    <div class="date-range">{dateRange}</div>
+    {highlights && highlights.length > 0 && (
+      <ul class="highlights">
+        {highlights.map(highlight => (
+          <li>{highlight}</li>
+        ))}
+      </ul>
+    )}
+  </div>
+</li>
+
+<style>
+  .experience-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--color-border);
+  }
+
+  .company,
+  .school {
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+  }
+
+  .role,
+  .degree {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .date-range {
+    font-size: var(--font-size-sm);
+    color: var(--color-link);
+    margin-bottom: var(--space-xs);
+  }
+
+  .highlights {
+    margin: 0;
+    padding-left: var(--space-md);
+    list-style: disc;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .highlights li {
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-sm);
+  }
+</style>

@@ -2,6 +2,8 @@
 import { getPublishedPosts } from '@/utils/blog';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ArrowCard from '@components/ArrowCard.astro';
+import ExperienceItem from '@components/ExperienceItem.astro';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const posts = (await getPublishedPosts()).slice(0, 3);
 ---
@@ -27,99 +29,63 @@ const posts = (await getPublishedPosts()).slice(0, 3);
   <section class="work-experience animate">
     <h2 id="work-experience">Work Experience</h2>
     <ul class="experience-list list-reset flex-column">
-      <li>
-        <div class="experience-item">
-          <div class="company">ePages</div>
-          <div class="role">Javascript Developer</div>
-          <div class="date-range">Jan 2024 - Present</div>
-          <ul class="highlights">
-            <li>
-              Develop features for customer storefronts and the visual page editor using React 19,
-              Redux, and TypeScript across storefront and admin platforms
-            </li>
-            <li>
-              Build and maintain Commerce Cockpit, a merchant admin platform with 50+ views for
-              managing products, orders, and customers
-            </li>
-            <li>
-              Write unit tests with Jest and E2E tests with Cypress and Playwright to ensure code
-              quality across both platforms
-            </li>
-            <li>
-              Work within a monorepo architecture managing multiple interconnected packages and
-              shared component libraries
-            </li>
-            <li>Work with design and backend teams to deliver features in two-week sprints</li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div class="experience-item">
-          <div class="company">FxPro</div>
-          <div class="role">Frontend Developer</div>
-          <div class="date-range">Feb 2022 - Oct 2023</div>
-          <ul class="highlights">
-            <li>
-              Worked on the main FxPro trading platform using Angular 11, TypeScript, and Svelte for
-              interactive components and features
-            </li>
-            <li>
-              Created landing pages and marketing microsites with Gulp build workflows, featuring
-              responsive designs and animations
-            </li>
-            <li>
-              Built email templates using EJS for multi-locale campaigns supporting multiple
-              languages and regulatory requirements
-            </li>
-            <li>
-              Developed financial calculators and interactive trading tools integrated with
-              Highcharts for data visualization
-            </li>
-            <li>
-              Worked on banking platform applications (BankPro, BnkPro) using Angular 9 and
-              Bootstrap for the user interface
-            </li>
-          </ul>
-        </div>
-      </li>
+      <ExperienceItem
+        type="work"
+        organization="ePages"
+        position="Javascript Developer"
+        dateRange="Jan 2024 - Present"
+        highlights={[
+          'Develop features for customer storefronts and the visual page editor using React 19, Redux, and TypeScript across storefront and admin platforms',
+          'Build and maintain Commerce Cockpit, a merchant admin platform with 50+ views for managing products, orders, and customers',
+          'Write unit tests with Jest and E2E tests with Cypress and Playwright to ensure code quality across both platforms',
+          'Work within a monorepo architecture managing multiple interconnected packages and shared component libraries',
+          'Work with design and backend teams to deliver features in two-week sprints'
+        ]}
+      />
+      <ExperienceItem
+        type="work"
+        organization="FxPro"
+        position="Frontend Developer"
+        dateRange="Feb 2022 - Oct 2023"
+        highlights={[
+          'Worked on the main FxPro trading platform using Angular 11, TypeScript, and Svelte for interactive components and features',
+          'Created landing pages and marketing microsites with Gulp build workflows, featuring responsive designs and animations',
+          'Built email templates using EJS for multi-locale campaigns supporting multiple languages and regulatory requirements',
+          'Developed financial calculators and interactive trading tools integrated with Highcharts for data visualization',
+          'Worked on banking platform applications (BankPro, BnkPro) using Angular 9 and Bootstrap for the user interface'
+        ]}
+      />
     </ul>
   </section>
 
   <section class="education animate">
     <h2 id="education">Education</h2>
     <ul class="experience-list list-reset flex-column">
-      <li>
-        <div class="experience-item">
-          <div class="school">DCI Digital Career Institute</div>
-          <div class="degree">Full Stack Web Developer</div>
-          <div class="date-range">Nov 2020 - Dec 2021</div>
-          <ul class="highlights">
-            <li>HTML, CSS, and responsive web design</li>
-            <li>Modern JavaScript development with React, Express.js, and Node.js</li>
-            <li>Git version control and GitHub team workflow</li>
-            <li>Advanced database development with MongoDB and Mongoose</li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div class="experience-item">
-          <div class="school">MBS Business School</div>
-          <div class="degree">Bachelor of Business Administration</div>
-          <div class="date-range">2012 - 2016</div>
-        </div>
-      </li>
+      <ExperienceItem
+        type="education"
+        organization="DCI Digital Career Institute"
+        position="Full Stack Web Developer"
+        dateRange="Nov 2020 - Dec 2021"
+        highlights={[
+          'HTML, CSS, and responsive web design',
+          'Modern JavaScript development with React, Express.js, and Node.js',
+          'Git version control and GitHub team workflow',
+          'Advanced database development with MongoDB and Mongoose'
+        ]}
+      />
+      <ExperienceItem
+        type="education"
+        organization="MBS Business School"
+        position="Bachelor of Business Administration"
+        dateRange="2012 - 2016"
+      />
     </ul>
   </section>
 
   {
     posts.length > 0 && (
       <section class="recent-posts animate">
-        <div class="section-header">
-          <h2>Recent Posts</h2>
-          <a href="/blog" class="view-all">
-            View all →
-          </a>
-        </div>
+        <SectionHeader title="Recent Posts" href="/blog" linkText="View all →" />
         <ul class="posts-list list-reset flex-column">
           {posts.map((post) => (
             <li>
@@ -168,28 +134,6 @@ const posts = (await getPublishedPosts()).slice(0, 3);
     margin-bottom: var(--space-xl);
   }
 
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--space-md);
-  }
-
-  .section-header h2 {
-    margin: 0;
-    font-size: var(--font-size-lg);
-  }
-
-  .view-all {
-    font-size: var(--font-size-sm);
-    transition: transform var(--transition-fast);
-    display: inline-block;
-  }
-
-  .view-all:hover {
-    transform: translateX(4px);
-  }
-
   .posts-list {
     gap: var(--space-sm);
   }
@@ -207,46 +151,6 @@ const posts = (await getPublishedPosts()).slice(0, 3);
 
   .experience-list {
     gap: var(--space-sm);
-  }
-
-  .experience-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    padding-left: var(--space-md);
-    border-left: 2px solid var(--color-border);
-  }
-
-  .company,
-  .school {
-    font-weight: 600;
-    font-size: var(--font-size-lg);
-    color: var(--color-text);
-  }
-
-  .role,
-  .degree {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-  }
-
-  .date-range {
-    font-size: var(--font-size-sm);
-    color: var(--color-link);
-    margin-bottom: var(--space-xs);
-  }
-
-  .highlights {
-    margin: 0;
-    padding-left: var(--space-md);
-    list-style: disc;
-    color: var(--color-text);
-    line-height: 1.6;
-  }
-
-  .highlights li {
-    margin-bottom: var(--space-xs);
-    font-size: var(--font-size-sm);
   }
 
   @media (max-width: 768px) {
