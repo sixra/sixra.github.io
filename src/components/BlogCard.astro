@@ -1,0 +1,59 @@
+---
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+}
+
+const { title, description, pubDate, slug } = Astro.props;
+---
+
+<article class="blog-card card">
+  <a href={`/blog/${slug}`} class="card-link">
+    <h3>{title}</h3>
+    <p class="description">{description}</p>
+    <div class="card-footer">
+      <FormattedDate date={pubDate} />
+    </div>
+  </a>
+</article>
+
+<style>
+  .blog-card {
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .card-link {
+    display: block;
+    color: inherit;
+  }
+
+  .card-link:hover {
+    color: inherit;
+  }
+
+  h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+  }
+
+  .card-link:hover h3 {
+    color: var(--color-link);
+  }
+
+  .description {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+    line-height: 1.5;
+  }
+
+  .card-footer {
+    color: var(--color-link);
+    font-size: var(--font-size-xs);
+  }
+</style>
