@@ -24,7 +24,7 @@ For styling, just plain CSS with custom properties. Thought about Tailwind but h
 
 ## What I Actually Built
 
-Started with a light theme, looked at it for five minutes, hated it, switched to dark. Spent way too long picking the exact shade of blue for links. Tried like eight different colors before settling on `#8b9dff` because it looked decent at 2am and I wanted to go to bed.
+Started with a light theme, looked at it for five minutes, hated it, switched to dark. Spent way too long picking the exact shade of coral for links. Tried like eight different colors before settling on `#ff7f6e` because it looked decent at 2am and I wanted to go to bed.
 
 The blog system uses Astro's Content Collections, which are pretty nice. You just drop markdown files in a folder and it handles the rest with full TypeScript support. Added reading time calculations and tags because every blog seems to have them, and honestly, they're useful when you're trying to decide if you have time to read something.
 

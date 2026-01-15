@@ -4,10 +4,10 @@
   --color-bg: #131418;
   --color-bg-accent: #1b1d25;
   --color-bg-code: #1a1b21;
-  --color-text: #c7bebe;
-  --color-text-muted: #8b8888;
-  --color-link: #8b9dff;
-  --color-link-hover: #7b8fff;
+  --color-text: #d4d1d1;
+  --color-text-muted: #a09d9d;
+  --color-link: #ff7f6e;
+  --color-link-hover: #ff6347;
   --color-border: #2a2c34;
   --color-bg-rgb: 19, 20, 24; /* For rgba() transparency */
 
@@ -129,10 +129,10 @@ a:focus-visible {
 code {
   font-family: var(--font-mono);
   font-size: 0.9em;
-  background-color: rgba(139, 157, 255, 0.08);
+  background-color: rgba(255, 127, 110, 0.08);
   padding: 0.2em 0.4em;
   border-radius: var(--border-radius);
-  color: #e8c896;
+  color: #ffb3a7;
 }
 
 pre {
