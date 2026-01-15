@@ -1,22 +1,40 @@
 ---
 import FormattedDate from './FormattedDate.astro';
+import TagList from './TagList.astro';
 
 interface Props {
   title: string;
   description: string;
   pubDate: Date;
   slug: string;
+  readingTime?: number;
+  tags?: string[];
+  image?: string;
 }
 
-const { title, description, pubDate, slug } = Astro.props;
+const { title, description, pubDate, slug, readingTime, tags, image } = Astro.props;
 ---
 
 <article class="blog-card card">
   <a href={`/blog/${slug}`} class="card-link">
+    {image && (
+      <img src={image} alt={title} class="card-image" />
+    )}
     <h3>{title}</h3>
     <p class="description">{description}</p>
+    {tags && tags.length > 0 && (
+      <div class="card-tags">
+        <TagList tags={tags} />
+      </div>
+    )}
     <div class="card-footer">
       <FormattedDate date={pubDate} />
+      {readingTime && (
+        <>
+          <span class="separator">•</span>
+          <span class="reading-time">{readingTime} min read</span>
+        </>
+      )}
     </div>
   </a>
 </article>
@@ -36,6 +54,14 @@ const { title, description, pubDate, slug } = Astro.props;
     color: inherit;
   }
 
+  .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: var(--space-md);
+  }
+
   h3 {
     margin-bottom: var(--space-sm);
     color: var(--color-text);
@@ -52,8 +78,23 @@ const { title, description, pubDate, slug } = Astro.props;
     line-height: 1.5;
   }
 
+  .card-tags {
+    margin-bottom: var(--space-sm);
+  }
+
   .card-footer {
-    color: var(--color-link);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-text-muted);
     font-size: var(--font-size-xs);
+  }
+
+  .separator {
+    color: var(--color-text-muted);
+  }
+
+  .reading-time {
+    color: var(--color-text-muted);
   }
 </style>
