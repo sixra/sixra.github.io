@@ -1,0 +1,25 @@
+# Build outputs
+  dist/
+  .astro/
+  .claude
+
+  # Dependencies
+  node_modules/
+
+  # Environment
+  .env
+  .env.*
+
+  # IDE
+  .vscode/
+  .idea/
+
+  # OS
+  .DS_Store
+  Thumbs.db
+
+  # Claude workspace
+  .claude/
+
+  # NPM (using pnpm)
+  package-lock.json
