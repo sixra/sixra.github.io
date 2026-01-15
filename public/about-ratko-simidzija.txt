@@ -2,6 +2,7 @@ Ratko Simidzija is a JavaScript Developer at ePages, specializing in React, Type
 
 Contact: comm.sr@tuta.com
 Website: https://sixra.github.io
+Location: Limassol, Cyprus
 LinkedIn: https://www.linkedin.com/in/ratkosimidzija
 GitHub: https://github.com/sixra
 Twitter: https://x.com/sixra01

@@ -1,0 +1,197 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SocialIcon from '@components/SocialIcon.astro';
+---
+
+<BaseLayout
+  title="Contact Ratko Simidzija | Get in Touch"
+  description="Get in touch with Ratko Simidzija, JavaScript Developer. Available for collaboration, consulting, and web development discussions."
+>
+  <article class="contact-page animate">
+    <h1>Get in Touch</h1>
+
+    <section class="intro-section">
+      <p>
+        I'm a JavaScript Developer currently working at ePages in Germany. I'm always interested in
+        connecting with other developers, discussing web development, React, TypeScript, or potential
+        collaborations.
+      </p>
+    </section>
+
+    <section class="contact-details">
+      <h2 id="contact-details">Contact Information</h2>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h3>Email</h3>
+          <p>
+            <a href="mailto:comm.sr@tuta.com" class="email-link">comm.sr@tuta.com</a>
+          </p>
+          <p class="note">Best way to reach me. I typically respond within 24-48 hours.</p>
+        </div>
+
+        <div class="contact-item">
+          <h3>Location</h3>
+          <p>Limassol, Cyprus</p>
+          <p class="note">Working remotely for ePages (based in Germany)</p>
+        </div>
+
+        <div class="contact-item">
+          <h3>Social Media</h3>
+          <div class="social-links">
+            <SocialIcon platform="github" href="https://github.com/sixra" />
+            <SocialIcon platform="linkedin" href="https://www.linkedin.com/in/ratkosimidzija" />
+            <SocialIcon platform="twitter" href="https://x.com/sixra01" />
+          </div>
+          <p class="note">Most active on GitHub and LinkedIn</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="availability">
+      <h2 id="availability">Work Status</h2>
+      <p>
+        I'm currently employed full-time at ePages as a JavaScript Developer. While I'm not actively
+        looking for new opportunities, I'm always open to interesting conversations about web development,
+        open source contributions, or potential collaborations.
+      </p>
+      <p>
+        Feel free to reach out if you want to discuss React, TypeScript, Astro, e-commerce architecture,
+        web accessibility, or anything related to modern web development.
+      </p>
+    </section>
+
+    <section class="expertise">
+      <h2 id="expertise">What I Can Help With</h2>
+      <ul>
+        <li>React and TypeScript development</li>
+        <li>Remix framework and full-stack applications</li>
+        <li>E-commerce platform architecture</li>
+        <li>Frontend testing (Jest, Cypress, Playwright)</li>
+        <li>Web accessibility (WCAG standards)</li>
+        <li>Code reviews and technical mentoring</li>
+      </ul>
+    </section>
+
+    <section class="response-time">
+      <h2 id="response-time">Response Time</h2>
+      <p>
+        I check email regularly and aim to respond within 24-48 hours. For urgent matters, LinkedIn
+        messages tend to get faster responses. Please note that I work full-time, so replies may be
+        delayed during busy weeks.
+      </p>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  .contact-page h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
+    color: var(--color-text);
+  }
+
+  .contact-page h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+  }
+
+  .contact-page h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+  }
+
+  .contact-page section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .contact-page p {
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .contact-page ul {
+    list-style: disc;
+    margin-left: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .contact-page ul li {
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+  }
+
+  .contact-page a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .contact-page a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+  }
+
+  .contact-item {
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-bg-accent);
+  }
+
+  .email-link {
+    font-weight: 500;
+    font-size: var(--font-size-lg);
+  }
+
+  .note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+    margin-bottom: 0;
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-item:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-page h1 {
+      font-size: 1.75rem;
+    }
+
+    .contact-page h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

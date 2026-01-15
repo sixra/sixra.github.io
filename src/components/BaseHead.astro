@@ -102,6 +102,16 @@ const ogImage = image ? new URL(image, Astro.site) : null;
     "@type": "Organization",
     name: "ePages"
   },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Limassol",
+    addressCountry: "CY"
+  },
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "JavaScript Developer",
+    occupationalCategory: "15-1252.00"
+  },
   knowsAbout: [
     "React",
     "Remix",
@@ -138,7 +148,11 @@ const ogImage = image ? new URL(image, Astro.site) : null;
     "https://github.com/sixra",
     "https://www.linkedin.com/in/ratkosimidzija",
     "https://x.com/sixra01"
-  ]
+  ],
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": Astro.site?.toString()
+  }
 })} />
 
 <!-- View Transitions (Astro 5.x) -->

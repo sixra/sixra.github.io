@@ -9,10 +9,13 @@ import SocialIcon from '@components/SocialIcon.astro';
 const posts = (await getPublishedPosts()).slice(0, 3);
 ---
 
-<BaseLayout title="Ratko Simidzija" description="JS Developer">
+<BaseLayout
+  title="Ratko Simidzija | JavaScript Developer"
+  description="JavaScript Developer specializing in React, TypeScript, and modern web development. Currently building e-commerce platforms at ePages. Five years of experience with web applications."
+>
   <section class="intro animate">
     <h1>Ratko Simidzija</h1>
-    <p class="headline">JS Developer</p>
+    <p class="headline">JavaScript Developer</p>
     <div class="bio">
       <p>
         Five years ago, I made the switch from Business Management to Web Development, a decision
@@ -31,9 +34,19 @@ const posts = (await getPublishedPosts()).slice(0, 3);
       <SocialIcon platform="github" href="https://github.com/sixra" />
       <SocialIcon platform="linkedin" href="https://www.linkedin.com/in/ratkosimidzija" />
       <a href="mailto:comm.sr@tuta.com" class="email-link" aria-label="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
         </svg>
       </a>
     </div>

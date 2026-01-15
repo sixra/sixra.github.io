@@ -1,0 +1,47 @@
+---
+// Reusable author bio component for blog posts
+---
+
+<section class="author-bio">
+  <hr class="divider" />
+  <h2>About the Author</h2>
+  <p>
+    Ratko Simidzija is a JavaScript Developer at ePages, specializing in React, TypeScript, and modern web development.
+    Five years of experience building e-commerce platforms and web applications.
+    Connect with him on <a href="https://github.com/sixra">GitHub</a> or <a href="https://www.linkedin.com/in/ratkosimidzija/">LinkedIn</a>.
+  </p>
+</section>
+
+<style>
+  .author-bio {
+    margin-top: var(--space-2xl);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: var(--space-xl);
+  }
+
+  .author-bio h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+  }
+
+  .author-bio p {
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .author-bio a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .author-bio a:hover {
+    text-decoration: underline;
+  }
+</style>

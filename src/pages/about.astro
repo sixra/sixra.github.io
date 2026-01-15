@@ -1,0 +1,191 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SocialIcon from '@components/SocialIcon.astro';
+---
+
+<BaseLayout
+  title="About Ratko Simidzija | JavaScript Developer"
+  description="Learn about Ratko Simidzija, a JavaScript Developer specializing in React, TypeScript, and modern web development. Five years of experience building e-commerce platforms and web applications."
+>
+  <article class="about-page animate">
+    <h1>About</h1>
+
+    <section class="intro-section">
+      <p>
+        Hey there! I'm Ratko Simidzija, a JavaScript Developer currently working at ePages in Germany.
+        I spend my days building e-commerce platforms with React, Remix, and TypeScript.
+      </p>
+      <p>
+        Before diving into web development, I worked in Business Management for several years. While it was
+        interesting, something was missing. In 2020, I made the switch to coding, and it turned out to be
+        one of the best decisions I've made. There's something deeply satisfying about solving problems
+        through code and seeing features come to life.
+      </p>
+    </section>
+
+    <section class="current-work">
+      <h2 id="current-work">What I'm Working On</h2>
+      <p>
+        At ePages, I work on two main platforms: customer storefronts and the Commerce Cockpit, a merchant
+        admin system. The stack is React 19, Remix, Redux, and TypeScript, all within a monorepo architecture.
+        I write unit tests with Jest and E2E tests with Cypress and Playwright to keep things reliable.
+      </p>
+      <p>
+        The Commerce Cockpit is a comprehensive admin platform with over 50 views for managing products, orders,
+        customers, and more. Working in a monorepo with multiple interconnected packages means paying close
+        attention to how changes ripple through the system.
+      </p>
+    </section>
+
+    <section class="experience">
+      <h2 id="experience">Background</h2>
+      <p>
+        Before ePages, I worked as a Frontend Developer at FxPro, a fintech company, from 2022 to 2023.
+        The focus there was on trading platforms and financial tools built with Angular and Svelte. I created
+        landing pages, marketing microsites, email templates for multi-locale campaigns, and interactive
+        calculators integrated with Highcharts.
+      </p>
+      <p>
+        My formal training came from DCI Digital Career Institute in Berlin, where I completed a Full Stack Web
+        Developer program in 2021. Before that, I earned a Bachelor of Business Administration from MBS Business
+        School, which gave me a foundation in how businesses work—helpful context when building software for
+        business users.
+      </p>
+    </section>
+
+    <section class="skills">
+      <h2 id="skills">Skills & Technologies</h2>
+      <p>
+        Day-to-day, I work mostly with React, TypeScript, and Remix. I've also spent considerable time with
+        Angular, Svelte, Redux, and Node.js. Testing is a big part of what I do—Jest for unit tests, Cypress
+        and Playwright for E2E testing.
+      </p>
+      <p>
+        Build tools like Webpack and Gulp, version control with Git, and Web Accessibility standards are all
+        part of the toolkit. Outside of work, I enjoy experimenting with Astro (this site is built with it)
+        and diving deeper into accessibility best practices.
+      </p>
+    </section>
+
+    <section class="interests">
+      <h2 id="interests">Current Focus</h2>
+      <ul>
+        <li>React 19 and modern React patterns</li>
+        <li>Remix for full-stack TypeScript applications</li>
+        <li>E-commerce architecture and scalability</li>
+        <li>Web Accessibility (WCAG standards)</li>
+        <li>E2E testing strategies with Playwright</li>
+      </ul>
+    </section>
+
+    <section class="contact">
+      <h2 id="contact">Get in Touch</h2>
+      <p>
+        If you want to connect about web development, React, TypeScript, or anything related to building
+        for the web, feel free to reach out. I'm most active on GitHub and LinkedIn.
+      </p>
+      <div class="contact-info">
+        <p><strong>Email:</strong> <a href="mailto:comm.sr@tuta.com">comm.sr@tuta.com</a></p>
+        <p><strong>Location:</strong> Limassol, Cyprus (working remotely for ePages in Germany)</p>
+      </div>
+      <div class="social-links">
+        <SocialIcon platform="github" href="https://github.com/sixra" />
+        <SocialIcon platform="linkedin" href="https://www.linkedin.com/in/ratkosimidzija" />
+        <SocialIcon platform="twitter" href="https://x.com/sixra01" />
+      </div>
+    </section>
+
+    <section class="footer-note">
+      <p>
+        This site is built with Astro, TypeScript, and plain CSS. It's deployed via GitHub Pages and serves
+        as both a portfolio and a place to share thoughts on web development. The source code is available
+        on <a href="https://github.com/sixra/sixra.github.io">GitHub</a>.
+      </p>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .about-page {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  .about-page h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
+    color: var(--color-text);
+  }
+
+  .about-page h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+  }
+
+  .about-page section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .about-page p {
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .about-page ul {
+    list-style: disc;
+    margin-left: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .about-page ul li {
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+  }
+
+  .about-page a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .about-page a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-info {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact-info p {
+    margin-bottom: var(--space-sm);
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .footer-note {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .about-page h1 {
+      font-size: 1.75rem;
+    }
+
+    .about-page h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
