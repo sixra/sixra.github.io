@@ -31,8 +31,9 @@ const modifiedTime = updatedDate?.toISOString();
     />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
-    <main class="container">
+    <main id="main-content" class="container">
       <article>
         <div class="post-meta animate">
           <div class="meta-line">
@@ -54,6 +55,7 @@ const modifiedTime = updatedDate?.toISOString();
       </article>
     </main>
     <Footer />
+    <div class="copy-toast" id="globalCopyToast" role="status" aria-live="polite" aria-atomic="true">Link copied to clipboard!</div>
   </body>
 </html>
 

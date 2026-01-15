@@ -53,6 +53,8 @@ const ogImage = image ? new URL(image, Astro.site) : null;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 {ogImage && <meta property="twitter:image" content={ogImage} />}
+<meta name="twitter:creator" content="@ratkosimidzija" />
+<meta name="twitter:site" content="@ratkosimidzija" />
 
 <!-- RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="Ratko Simidzija" href="/rss.xml" />
