@@ -6,8 +6,8 @@
   --color-bg-code: #1a1b21;
   --color-text: #c7bebe;
   --color-text-muted: #8b8888;
-  --color-link: #fbbf24;
-  --color-link-hover: #f59e0b;
+  --color-link: #ffbd59;
+  --color-link-hover: #f5a84a;
   --color-border: #2a2c34;
   --color-bg-rgb: 19, 20, 24; /* For rgba() transparency */
 
@@ -129,7 +129,7 @@ a:focus-visible {
 code {
   font-family: var(--font-mono);
   font-size: 0.9em;
-  background-color: rgba(251, 191, 36, 0.08);
+  background-color: rgba(255, 189, 89, 0.08);
   padding: 0.2em 0.4em;
   border-radius: var(--border-radius);
   color: #e8c896;

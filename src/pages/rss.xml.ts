@@ -7,7 +7,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'Ratko Simidzija',
-    description: 'forever curious',
+    description: 'Writing about JavaScript, React, TypeScript, and web development',
     site: context.site!,
     items: posts.map((post) => ({
         title: post.data.title,
