@@ -170,9 +170,6 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
   })}
 />
 
-<!-- View Transitions (Astro 5.x) -->
-<meta name="view-transition" content="same-origin" />
-
 <!-- Page Initialization Scripts -->
 <script is:inline>
   function initPage() {
@@ -231,6 +228,22 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
   document.addEventListener('astro:after-swap', () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   });
+
+  // Dynamically set transition name only on clicked blog title
+  function setupBlogTitleTransitions() {
+    document.querySelectorAll('[data-blog-title]').forEach((title) => {
+      const link = title.closest('a');
+      if (link) {
+        link.addEventListener('click', () => {
+          const slug = title.getAttribute('data-slug');
+          title.style.viewTransitionName = `post-title-${slug}`;
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupBlogTitleTransitions);
+  document.addEventListener('astro:after-swap', setupBlogTitleTransitions);
 </script>
 
 <!-- Plausible Analytics (production only, privacy-respecting) -->

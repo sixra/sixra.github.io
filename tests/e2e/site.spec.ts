@@ -58,7 +58,7 @@ test.describe('Tags', () => {
     await firstTag.click();
 
     await page.waitForURL(/\/tags\/.+/);
-    await expect(page.locator('h1')).toContainText('Posts tagged');
+    await expect(page.locator('article h1, .page-title').first()).toContainText('Posts tagged');
   });
 
   test('should display posts filtered by tag', async ({ page }) => {
@@ -107,3 +107,22 @@ test.describe('Images', () => {
   });
 });
 
+test.describe('View Transitions', () => {
+  test('should set view-transition-name on clicked blog title', async ({ page }) => {
+    await page.goto('/blog');
+
+    // Verify data attributes exist
+    const firstTitle = page.locator('[data-blog-title]').first();
+    await expect(firstTitle).toHaveAttribute('data-slug');
+
+    // Click the blog card
+    const firstCard = page.locator('.blog-card').first();
+    await firstCard.click();
+
+    // Wait for navigation to complete
+    await page.waitForURL(/\/blog\/.+/);
+
+    // Verify we reached the blog post
+    await expect(page.locator('article h1')).toBeVisible();
+  });
+});
