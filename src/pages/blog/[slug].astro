@@ -19,17 +19,11 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-// Calculate reading time
 const readingTime = calculateReadingTime(post.body);
 
-// Get related posts based on tags
 const relatedPosts = await getRelatedPosts(post.slug, post.data.tags);
 ---
 
-<BlogPost
-  {...post.data}
-  readingTime={readingTime}
-  relatedPosts={relatedPosts}
->
+<BlogPost {...post.data} readingTime={readingTime} relatedPosts={relatedPosts}>
   <Content />
 </BlogPost>

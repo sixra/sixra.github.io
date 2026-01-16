@@ -6,15 +6,17 @@ interface Props {
 const { tags } = Astro.props;
 ---
 
-{tags && tags.length > 0 && (
-  <div class="tags">
-    {tags.map(tag => (
-      <a href={`/tags/${tag}`} class="tag">
-        {tag}
-      </a>
-    ))}
-  </div>
-)}
+{
+  tags && tags.length > 0 && (
+    <div class="tags">
+      {tags.map((tag) => (
+        <a href={`/tags/${tag}`} class="tag">
+          {tag}
+        </a>
+      ))}
+    </div>
+  )
+}
 
 <style>
   .tags {
@@ -36,6 +38,6 @@ const { tags } = Astro.props;
 
   .tag:hover {
     color: var(--color-link);
-    background-color: #ff7f6e19; /* 10% opacity of --color-link */
+    background-color: var(--color-link-transparent);
   }
 </style>

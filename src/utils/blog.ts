@@ -1,12 +1,20 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+const READING_SPEED_WPM = 200;
+const MAX_RELATED_POSTS = 3;
+
 /**
  * Get all published blog posts sorted by date (newest first)
  */
 export async function getPublishedPosts() {
-  return (await getCollection('blog'))
-    .filter(post => !post.data.draft)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  try {
+    return (await getCollection('blog'))
+      .filter((post) => !post.data.draft)
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  } catch (error) {
+    console.error('Failed to fetch published posts:', error);
+    return [];
+  }
 }
 
 /**
@@ -14,9 +22,8 @@ export async function getPublishedPosts() {
  * Average reading speed: 200 words per minute
  */
 export function calculateReadingTime(content: string): number {
-  const wordsPerMinute = 200;
   const wordCount = content.trim().split(/\s+/).length;
-  return Math.ceil(wordCount / wordsPerMinute);
+  return Math.ceil(wordCount / READING_SPEED_WPM);
 }
 
 /**
@@ -26,18 +33,23 @@ export function calculateReadingTime(content: string): number {
  * @returns Array of {tag: string, count: number}
  */
 export async function getAllTags() {
-  const posts = await getPublishedPosts();
-  const tagCounts = new Map<string, number>();
+  try {
+    const posts = await getPublishedPosts();
+    const tagCounts = new Map<string, number>();
 
-  posts.forEach(post => {
-    post.data.tags?.forEach(tag => {
-      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    posts.forEach((post) => {
+      post.data.tags?.forEach((tag) => {
+        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+      });
     });
-  });
 
-  return Array.from(tagCounts.entries())
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.count);
+    return Array.from(tagCounts.entries())
+      .map(([tag, count]) => ({ tag, count }))
+      .sort((a, b) => b.count - a.count);
+  } catch (error) {
+    console.error('Failed to get all tags:', error);
+    return [];
+  }
 }
 
 /**
@@ -46,10 +58,13 @@ export async function getAllTags() {
  * @returns Array of posts containing the specified tag
  */
 export async function getPostsByTag(tag: string) {
-  const posts = await getPublishedPosts();
-  return posts.filter(post =>
-    post.data.tags?.includes(tag)
-  );
+  try {
+    const posts = await getPublishedPosts();
+    return posts.filter((post) => post.data.tags?.includes(tag));
+  } catch (error) {
+    console.error(`Failed to get posts by tag "${tag}":`, error);
+    return [];
+  }
 }
 
 /**
@@ -63,21 +78,24 @@ export async function getRelatedPosts(
   currentSlug: string,
   tags?: string[]
 ): Promise<CollectionEntry<'blog'>[]> {
-  if (!tags || tags.length === 0) return [];
+  try {
+    if (!tags || tags.length === 0) return [];
 
-  const allPosts = await getPublishedPosts();
+    const allPosts = await getPublishedPosts();
 
-  const postsWithScore = allPosts
-    .filter(post => post.slug !== currentSlug)
-    .map(post => {
-      const matchingTags = post.data.tags?.filter(tag =>
-        tags.includes(tag)
-      ).length || 0;
-      return { post, score: matchingTags };
-    })
-    .filter(item => item.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
+    const postsWithScore = allPosts
+      .filter((post) => post.slug !== currentSlug)
+      .map((post) => {
+        const matchingTags = post.data.tags?.filter((tag) => tags.includes(tag)).length || 0;
+        return { post, score: matchingTags };
+      })
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, MAX_RELATED_POSTS);
 
-  return postsWithScore.map(item => item.post);
+    return postsWithScore.map((item) => item.post);
+  } catch (error) {
+    console.error(`Failed to get related posts for "${currentSlug}":`, error);
+    return [];
+  }
 }

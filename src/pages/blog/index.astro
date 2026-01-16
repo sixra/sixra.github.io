@@ -5,21 +5,22 @@ import BlogCard from '@components/BlogCard.astro';
 
 const posts = await getPublishedPosts();
 
-// Calculate reading time for each post
-const postsWithMeta = posts.map(post => ({
+const postsWithMeta = posts.map((post) => ({
   ...post,
-  readingTime: calculateReadingTime(post.body)
+  readingTime: calculateReadingTime(post.body),
 }));
 
-// Group posts by year
-const postsByYear = postsWithMeta.reduce((acc, post) => {
-  const year = post.data.pubDate.getFullYear();
-  if (!acc[year]) {
-    acc[year] = [];
-  }
-  acc[year].push(post);
-  return acc;
-}, {} as Record<number, typeof postsWithMeta>);
+const postsByYear = postsWithMeta.reduce(
+  (acc, post) => {
+    const year = post.data.pubDate.getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  },
+  {} as Record<number, typeof postsWithMeta>
+);
 
 const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 ---
@@ -28,34 +29,34 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
   title="Blog - Ratko Simidzija"
   description="Thoughts, learnings, and explorations in software engineering"
 >
-  <h1 class="page-title animate">
-    Blog
-  </h1>
+  <h1 class="page-title animate">Blog</h1>
 
-  {years.length > 0 ? (
-    <div class="posts-by-year">
-      {years.map(year => (
-        <section class="year-section animate">
-          <div class="year-heading">{year}</div>
-          <div class="posts">
-            {postsByYear[Number(year)].map(post => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                slug={post.slug}
-                readingTime={post.readingTime}
-                tags={post.data.tags}
-                image={post.data.image}
-              />
-            ))}
-          </div>
-        </section>
-      ))}
-    </div>
-  ) : (
-    <p class="no-posts">No posts yet. Check back soon!</p>
-  )}
+  {
+    years.length > 0 ? (
+      <div class="posts-by-year">
+        {years.map((year) => (
+          <section class="year-section animate">
+            <div class="year-heading">{year}</div>
+            <div class="posts">
+              {postsByYear[Number(year)].map((post) => (
+                <BlogCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  pubDate={post.data.pubDate}
+                  slug={post.slug}
+                  readingTime={post.readingTime}
+                  tags={post.data.tags}
+                  image={post.data.image}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    ) : (
+      <p class="no-posts">No posts yet. Check back soon!</p>
+    )
+  }
 </BaseLayout>
 
 <style>

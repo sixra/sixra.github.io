@@ -17,13 +17,15 @@ const posClass = type === 'work' ? 'role' : 'degree';
     <div class={orgClass}>{organization}</div>
     <div class={posClass}>{position}</div>
     <div class="date-range">{dateRange}</div>
-    {highlights && highlights.length > 0 && (
-      <ul class="highlights">
-        {highlights.map(highlight => (
-          <li>{highlight}</li>
-        ))}
-      </ul>
-    )}
+    {
+      highlights && highlights.length > 0 && (
+        <ul class="highlights">
+          {highlights.map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+      )
+    }
   </div>
 </li>
 
