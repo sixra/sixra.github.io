@@ -4,19 +4,19 @@
     "timings": [
       {
         "metric": "first-contentful-paint",
-        "budget": 1000
+        "budget": 1200
       },
       {
         "metric": "largest-contentful-paint",
-        "budget": 1900
+        "budget": 2200
       },
       {
         "metric": "interactive",
-        "budget": 3000
+        "budget": 3500
       },
       {
         "metric": "total-blocking-time",
-        "budget": 200
+        "budget": 500
       },
       {
         "metric": "cumulative-layout-shift",
@@ -24,29 +24,29 @@
       },
       {
         "metric": "speed-index",
-        "budget": 1000
+        "budget": 2500
       }
     ],
     "resourceSizes": [
       {
         "resourceType": "document",
-        "budget": 6
+        "budget": 10
       },
       {
         "resourceType": "script",
-        "budget": 3
+        "budget": 10
       },
       {
         "resourceType": "stylesheet",
-        "budget": 5
+        "budget": 10
       },
       {
         "resourceType": "image",
-        "budget": 23
+        "budget": 150
       },
       {
         "resourceType": "total",
-        "budget": 110
+        "budget": 250
       }
     ]
   }

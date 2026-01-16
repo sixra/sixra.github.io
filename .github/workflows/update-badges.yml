@@ -1,0 +1,102 @@
+name: Update README Badges
+
+on:
+  workflow_run:
+    workflows: ["Test", "Lighthouse CI (Weekly Audit)"]
+    types:
+      - completed
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-badges:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Run tests with coverage
+        run: pnpm test:coverage -- --run
+        continue-on-error: true
+
+      - name: Run Lighthouse
+        id: lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:8080/
+          uploadArtifacts: false
+          temporaryPublicStorage: false
+          runs: 1
+        continue-on-error: true
+
+      - name: Extract metrics and update badges
+        run: |
+          # Create metrics directory if it doesn't exist
+          mkdir -p .github/badges
+
+          # Extract test coverage
+          if [ -f "coverage/coverage-summary.json" ]; then
+            COVERAGE=$(node -e "const data = require('./coverage/coverage-summary.json'); console.log(Math.round(data.total.lines.pct))")
+            echo "{ \"schemaVersion\": 1, \"label\": \"coverage\", \"message\": \"${COVERAGE}%\", \"color\": \"$([ $COVERAGE -ge 80 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/coverage.json
+          fi
+
+          # Extract Lighthouse scores
+          if [ -f ".lighthouseci/lhr-*.json" ]; then
+            LHR_FILE=$(ls .lighthouseci/lhr-*.json | head -1)
+
+            PERF=$(node -e "const data = require('$LHR_FILE'); console.log(Math.round(data.categories.performance.score * 100))")
+            A11Y=$(node -e "const data = require('$LHR_FILE'); console.log(Math.round(data.categories.accessibility.score * 100))")
+            BP=$(node -e "const data = require('$LHR_FILE'); console.log(Math.round(data.categories['best-practices'].score * 100))")
+            SEO=$(node -e "const data = require('$LHR_FILE'); console.log(Math.round(data.categories.seo.score * 100))")
+
+            # Lighthouse Performance
+            echo "{ \"schemaVersion\": 1, \"label\": \"performance\", \"message\": \"${PERF}%\", \"color\": \"$([ $PERF -ge 90 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/lighthouse-performance.json
+
+            # Lighthouse Accessibility
+            echo "{ \"schemaVersion\": 1, \"label\": \"accessibility\", \"message\": \"${A11Y}%\", \"color\": \"$([ $A11Y -ge 90 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/lighthouse-accessibility.json
+
+            # Lighthouse Best Practices
+            echo "{ \"schemaVersion\": 1, \"label\": \"best practices\", \"message\": \"${BP}%\", \"color\": \"$([ $BP -ge 90 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/lighthouse-best-practices.json
+
+            # Lighthouse SEO
+            echo "{ \"schemaVersion\": 1, \"label\": \"SEO\", \"message\": \"${SEO}%\", \"color\": \"$([ $SEO -ge 90 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/lighthouse-seo.json
+
+            # Extract performance metrics
+            FCP=$(node -e "const data = require('$LHR_FILE'); console.log(Math.round(data.audits['first-contentful-paint'].numericValue))")
+            LCP=$(node -e "const data = require('$LHR_FILE'); console.log(Math.round(data.audits['largest-contentful-paint'].numericValue))")
+            SIZE=$(node -e "const data = require('$LHR_FILE'); const summary = data.audits['resource-summary'].details.items; const total = summary.find(item => item.resourceType === 'total'); console.log(Math.round(total.transferSize/1024))")
+
+            echo "{ \"schemaVersion\": 1, \"label\": \"FCP\", \"message\": \"${FCP}ms\", \"color\": \"$([ $FCP -le 1200 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/fcp.json
+            echo "{ \"schemaVersion\": 1, \"label\": \"LCP\", \"message\": \"${LCP}ms\", \"color\": \"$([ $LCP -le 2500 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/lcp.json
+            echo "{ \"schemaVersion\": 1, \"label\": \"size\", \"message\": \"${SIZE}KB\", \"color\": \"$([ $SIZE -le 250 ] && echo 'brightgreen' || echo 'yellow')\" }" > .github/badges/size.json
+          fi
+
+      - name: Commit badge data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/badges/
+          git diff --staged --quiet || git commit -m "chore: Update README badges [skip ci]"
+          git push
