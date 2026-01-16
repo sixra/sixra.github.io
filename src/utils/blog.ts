@@ -5,7 +5,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
  */
 export async function getPublishedPosts() {
   return (await getCollection('blog'))
-    .filter(post => !post.data.draft)
+    .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
 
@@ -29,8 +29,8 @@ export async function getAllTags() {
   const posts = await getPublishedPosts();
   const tagCounts = new Map<string, number>();
 
-  posts.forEach(post => {
-    post.data.tags?.forEach(tag => {
+  posts.forEach((post) => {
+    post.data.tags?.forEach((tag) => {
       tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
     });
   });
@@ -47,9 +47,7 @@ export async function getAllTags() {
  */
 export async function getPostsByTag(tag: string) {
   const posts = await getPublishedPosts();
-  return posts.filter(post =>
-    post.data.tags?.includes(tag)
-  );
+  return posts.filter((post) => post.data.tags?.includes(tag));
 }
 
 /**
@@ -68,16 +66,14 @@ export async function getRelatedPosts(
   const allPosts = await getPublishedPosts();
 
   const postsWithScore = allPosts
-    .filter(post => post.slug !== currentSlug)
-    .map(post => {
-      const matchingTags = post.data.tags?.filter(tag =>
-        tags.includes(tag)
-      ).length || 0;
+    .filter((post) => post.slug !== currentSlug)
+    .map((post) => {
+      const matchingTags = post.data.tags?.filter((tag) => tags.includes(tag)).length || 0;
       return { post, score: matchingTags };
     })
-    .filter(item => item.score > 0)
+    .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
-  return postsWithScore.map(item => item.post);
+  return postsWithScore.map((item) => item.post);
 }

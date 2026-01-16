@@ -1,9 +1,9 @@
 ---
-title: "Hello World"
-description: "Finally got around to building a proper portfolio site"
+title: 'Hello World'
+description: 'Finally got around to building a proper portfolio site'
 pubDate: 2026-01-14
-tags: ["astro", "meta", "personal"]
-image: "/images/blog/hello-world.jpeg"
+tags: ['astro', 'meta', 'personal']
+image: '/images/blog/hello-world.jpeg'
 ---
 
 After months of thinking "I should really build a portfolio site," I finally sat down and did it. I went with [Astro](https://astro.build) for this project, and honestly, it's been a great choice.

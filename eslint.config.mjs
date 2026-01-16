@@ -3,7 +3,7 @@ import tseslint from 'typescript-eslint';
 
 export default [
   {
-    ignores: ['dist/**', '.astro/**', 'node_modules/**']
+    ignores: ['dist/**', '.astro/**', 'node_modules/**'],
   },
 
   ...tseslint.configs.recommended,
@@ -20,6 +20,6 @@ export default [
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'warn',
       'no-var': 'error',
-    }
-  }
+    },
+  },
 ];

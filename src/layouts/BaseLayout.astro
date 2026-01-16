@@ -26,6 +26,14 @@ const { title, description, image, type } = Astro.props;
       <slot />
     </main>
     <Footer />
-    <div class="copy-toast" id="globalCopyToast" role="status" aria-live="polite" aria-atomic="true">Link copied to clipboard!</div>
+    <div
+      class="copy-toast"
+      id="globalCopyToast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      Link copied to clipboard!
+    </div>
   </body>
 </html>

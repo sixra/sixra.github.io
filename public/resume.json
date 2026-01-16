@@ -88,53 +88,27 @@
     {
       "name": "Frontend Development",
       "level": "Advanced",
-      "keywords": [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "HTML",
-        "CSS"
-      ]
+      "keywords": ["React", "TypeScript", "JavaScript", "HTML", "CSS"]
     },
     {
       "name": "Frameworks & Libraries",
       "level": "Advanced",
-      "keywords": [
-        "Remix",
-        "Redux",
-        "Angular",
-        "Svelte",
-        "Astro"
-      ]
+      "keywords": ["Remix", "Redux", "Angular", "Svelte", "Astro"]
     },
     {
       "name": "Backend & Full-Stack",
       "level": "Intermediate",
-      "keywords": [
-        "Node.js",
-        "Express.js",
-        "MongoDB"
-      ]
+      "keywords": ["Node.js", "Express.js", "MongoDB"]
     },
     {
       "name": "Testing",
       "level": "Advanced",
-      "keywords": [
-        "Jest",
-        "Cypress",
-        "Playwright",
-        "E2E Testing"
-      ]
+      "keywords": ["Jest", "Cypress", "Playwright", "E2E Testing"]
     },
     {
       "name": "Build Tools & DevOps",
       "level": "Intermediate",
-      "keywords": [
-        "Webpack",
-        "Gulp",
-        "Git",
-        "GitHub Actions"
-      ]
+      "keywords": ["Webpack", "Gulp", "Git", "GitHub Actions"]
     },
     {
       "name": "Specializations",

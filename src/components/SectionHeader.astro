@@ -10,11 +10,13 @@ const { title, href, linkText } = Astro.props;
 
 <div class="section-header">
   <h2>{title}</h2>
-  {href && linkText && (
-    <a href={href} class="view-all">
-      {linkText}
-    </a>
-  )}
+  {
+    href && linkText && (
+      <a href={href} class="view-all">
+        {linkText}
+      </a>
+    )
+  }
 </div>
 
 <style>

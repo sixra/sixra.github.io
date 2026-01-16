@@ -19,7 +19,8 @@ interface Props {
   relatedPosts?: CollectionEntry<'blog'>[];
 }
 
-const { title, description, pubDate, updatedDate, image, readingTime, tags, relatedPosts } = Astro.props;
+const { title, description, pubDate, updatedDate, image, readingTime, tags, relatedPosts } =
+  Astro.props;
 const publishedTime = pubDate.toISOString();
 const modifiedTime = updatedDate?.toISOString();
 ---
@@ -41,46 +42,62 @@ const modifiedTime = updatedDate?.toISOString();
     <Header />
     <main id="main-content" class="container">
       <article>
-        {image && (
-          <div class="featured-image animate">
-            <img src={image} alt={title} />
-          </div>
-        )}
+        {
+          image && (
+            <div class="featured-image animate">
+              <img src={image} alt={title} />
+            </div>
+          )
+        }
         <div class="post-meta animate">
           <div class="meta-line">
             <FormattedDate date={pubDate} />
-            {readingTime && (
-              <>
-                <span class="separator">•</span>
-                <span>{readingTime} min read</span>
-              </>
-            )}
-            {updatedDate && (
-              <>
-                <span class="separator">•</span>
-                <span>Updated: <FormattedDate date={updatedDate} /></span>
-              </>
-            )}
+            {
+              readingTime && (
+                <>
+                  <span class="separator">•</span>
+                  <span>{readingTime} min read</span>
+                </>
+              )
+            }
+            {
+              updatedDate && (
+                <>
+                  <span class="separator">•</span>
+                  <span>
+                    Updated: <FormattedDate date={updatedDate} />
+                  </span>
+                </>
+              )
+            }
           </div>
         </div>
         <header class="post-header animate">
           <h1>{title}</h1>
         </header>
-        {tags && tags.length > 0 && (
-          <div class="post-tags animate">
-            <TagList tags={tags} />
-          </div>
-        )}
+        {
+          tags && tags.length > 0 && (
+            <div class="post-tags animate">
+              <TagList tags={tags} />
+            </div>
+          )
+        }
         <div class="prose animate">
           <slot />
         </div>
-        {relatedPosts && relatedPosts.length > 0 && (
-          <RelatedPosts posts={relatedPosts} />
-        )}
+        {relatedPosts && relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
       </article>
     </main>
     <Footer />
-    <div class="copy-toast" id="globalCopyToast" role="status" aria-live="polite" aria-atomic="true">Link copied to clipboard!</div>
+    <div
+      class="copy-toast"
+      id="globalCopyToast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      Link copied to clipboard!
+    </div>
   </body>
 </html>
 

@@ -17,24 +17,26 @@ const { title, description, pubDate, slug, readingTime, tags, image } = Astro.pr
 
 <article class="blog-card card">
   <a href={`/blog/${slug}`} class="card-link">
-    {image && (
-      <img src={image} alt={title} class="card-image" />
-    )}
+    {image && <img src={image} alt={title} class="card-image" />}
     <h3>{title}</h3>
     <p class="description">{description}</p>
-    {tags && tags.length > 0 && (
-      <div class="card-tags">
-        <TagList tags={tags} />
-      </div>
-    )}
+    {
+      tags && tags.length > 0 && (
+        <div class="card-tags">
+          <TagList tags={tags} />
+        </div>
+      )
+    }
     <div class="card-footer">
       <FormattedDate date={pubDate} />
-      {readingTime && (
-        <>
-          <span class="separator">•</span>
-          <span class="reading-time">{readingTime} min read</span>
-        </>
-      )}
+      {
+        readingTime && (
+          <>
+            <span class="separator">•</span>
+            <span class="reading-time">{readingTime} min read</span>
+          </>
+        )
+      }
     </div>
   </a>
 </article>

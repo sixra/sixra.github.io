@@ -10,14 +10,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const {
-  title,
-  description,
-  image,
-  publishedTime,
-  modifiedTime,
-  type = 'website'
-} = Astro.props;
+const { title, description, image, publishedTime, modifiedTime, type = 'website' } = Astro.props;
 
 const defaultOgImage = new URL('/sr-logo-1200x630.png', Astro.site);
 const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
@@ -74,97 +67,108 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- JSON-LD Structured Data -->
-{type === 'article' && publishedTime && (
-  <script is:inline type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: title,
-    description: description,
-    datePublished: publishedTime,
-    dateModified: modifiedTime || publishedTime,
-    author: {
-      "@type": "Person",
-      name: "Ratko Simidzija",
-      url: Astro.site?.toString()
-    },
-    publisher: {
-      "@type": "Person",
-      name: "Ratko Simidzija"
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": canonicalURL.toString()
-    }
-  })} />
-)}
+{
+  type === 'article' && publishedTime && (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description: description,
+        datePublished: publishedTime,
+        dateModified: modifiedTime || publishedTime,
+        author: {
+          '@type': 'Person',
+          name: 'Ratko Simidzija',
+          url: Astro.site?.toString(),
+        },
+        publisher: {
+          '@type': 'Person',
+          name: 'Ratko Simidzija',
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': canonicalURL.toString(),
+        },
+      })}
+    />
+  )
+}
 
-<script is:inline type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${Astro.site}#person`,
-  identifier: "ratko-simidzija",
-  name: "Ratko Simidzija",
-  givenName: "Ratko",
-  familyName: "Simidzija",
-  email: "comm.sr@tuta.com",
-  jobTitle: "JavaScript Developer",
-  description: "JavaScript Developer specializing in React, TypeScript, and modern web development. Five years of experience building e-commerce platforms, trading applications, and web solutions.",
-  worksFor: {
-    "@type": "Organization",
-    name: "ePages"
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Limassol",
-    addressCountry: "CY"
-  },
-  hasOccupation: {
-    "@type": "Occupation",
-    name: "JavaScript Developer",
-    occupationalCategory: "15-1252.00"
-  },
-  knowsAbout: [
-    "React",
-    "Remix",
-    "TypeScript",
-    "Redux",
-    "Angular",
-    "Svelte",
-    "Astro",
-    "Node.js",
-    "Jest",
-    "Cypress",
-    "Playwright",
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "Webpack",
-    "Git",
-    "Web Accessibility",
-    "Responsive Design",
-    "E2E Testing"
-  ],
-  alumniOf: [
-    {
-      "@type": "EducationalOrganization",
-      name: "DCI Digital Career Institute"
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${Astro.site}#person`,
+    identifier: 'ratko-simidzija',
+    name: 'Ratko Simidzija',
+    givenName: 'Ratko',
+    familyName: 'Simidzija',
+    email: 'comm.sr@tuta.com',
+    jobTitle: 'JavaScript Developer',
+    description:
+      'JavaScript Developer specializing in React, TypeScript, and modern web development. Five years of experience building e-commerce platforms, trading applications, and web solutions.',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'ePages',
     },
-    {
-      "@type": "EducationalOrganization",
-      name: "MBS Business School"
-    }
-  ],
-  url: Astro.site?.toString(),
-  sameAs: [
-    "https://github.com/sixra",
-    "https://www.linkedin.com/in/ratkosimidzija",
-    "https://x.com/sixra01"
-  ],
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": Astro.site?.toString()
-  }
-})} />
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Limassol',
+      addressCountry: 'CY',
+    },
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'JavaScript Developer',
+      occupationalCategory: '15-1252.00',
+    },
+    knowsAbout: [
+      'React',
+      'Remix',
+      'TypeScript',
+      'Redux',
+      'Angular',
+      'Svelte',
+      'Astro',
+      'Node.js',
+      'Jest',
+      'Cypress',
+      'Playwright',
+      'JavaScript',
+      'HTML',
+      'CSS',
+      'Webpack',
+      'Git',
+      'Web Accessibility',
+      'Responsive Design',
+      'E2E Testing',
+    ],
+    alumniOf: [
+      {
+        '@type': 'EducationalOrganization',
+        name: 'DCI Digital Career Institute',
+      },
+      {
+        '@type': 'EducationalOrganization',
+        name: 'MBS Business School',
+      },
+    ],
+    url: Astro.site?.toString(),
+    sameAs: [
+      'https://github.com/sixra',
+      'https://www.linkedin.com/in/ratkosimidzija',
+      'https://x.com/sixra01',
+    ],
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': Astro.site?.toString(),
+    },
+  })}
+/>
 
 <!-- View Transitions (Astro 5.x) -->
 <meta name="view-transition" content="same-origin" />
@@ -180,7 +184,7 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
     });
 
     const headings = document.querySelectorAll('h2[id]');
-    headings.forEach(heading => {
+    headings.forEach((heading) => {
       heading.setAttribute('tabindex', '0');
       heading.setAttribute('role', 'button');
       heading.setAttribute('aria-label', `Copy link to ${heading.textContent}`);
@@ -192,18 +196,21 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 
           window.history.pushState({}, '', `#${id}`);
 
-          navigator.clipboard.writeText(url).then(() => {
-            showToast('Link copied to clipboard!');
-          }).catch(err => {
-            console.error('Failed to copy link:', err);
-            showToast('Failed to copy link', true);
-          });
+          navigator.clipboard
+            .writeText(url)
+            .then(() => {
+              showToast('Link copied to clipboard!');
+            })
+            .catch((err) => {
+              console.error('Failed to copy link:', err);
+              showToast('Failed to copy link', true);
+            });
         }
       }
 
       heading.addEventListener('click', handleCopy);
 
-      heading.addEventListener('keydown', function(e) {
+      heading.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           handleCopy.call(this);

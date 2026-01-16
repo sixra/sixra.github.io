@@ -19,9 +19,9 @@ interface Props {
 const { tag } = Astro.props;
 const posts = await getPostsByTag(tag);
 
-const postsWithMeta = posts.map(post => ({
+const postsWithMeta = posts.map((post) => ({
   ...post,
-  readingTime: calculateReadingTime(post.body)
+  readingTime: calculateReadingTime(post.body),
 }));
 ---
 
@@ -36,17 +36,19 @@ const postsWithMeta = posts.map(post => ({
   </div>
 
   <div class="posts animate">
-    {postsWithMeta.map(post => (
-      <BlogCard
-        title={post.data.title}
-        description={post.data.description}
-        pubDate={post.data.pubDate}
-        slug={post.slug}
-        readingTime={post.readingTime}
-        tags={post.data.tags}
-        image={post.data.image}
-      />
-    ))}
+    {
+      postsWithMeta.map((post) => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          slug={post.slug}
+          readingTime={post.readingTime}
+          tags={post.data.tags}
+          image={post.data.image}
+        />
+      ))
+    }
   </div>
 </BaseLayout>
 
