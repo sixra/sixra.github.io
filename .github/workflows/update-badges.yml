@@ -2,7 +2,7 @@ name: Update README Badges
 
 on:
   workflow_run:
-    workflows: ["Test", "Lighthouse CI (Weekly Audit)"]
+    workflows: ["Test", "Lighthouse CI"]
     types:
       - completed
     branches: [main]
