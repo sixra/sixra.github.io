@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,23 +25,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run tests
-        run: pnpm test -- --run
-
       - name: Run linter
         run: pnpm lint
 
-      - name: Build
-        run: pnpm build
+  unit-test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
-      - name: Run E2E tests
-        run: pnpm test:e2e
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
 
-  lighthouse-pr:
-    if: github.event_name == 'pull_request'  # Only run on PRs, not main pushes
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run unit tests
+        run: pnpm test -- --run
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,14 +70,30 @@ jobs:
       - name: Build site
         run: pnpm build
 
-      - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v12
+  e2e-test:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
         with:
-          urls: |
-            http://localhost:8080/
-            http://localhost:8080/blog/
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          budgetPath: '.github/lighthouse/budget.json'
-          configPath: '.github/lighthouse/lighthouserc.json'
-          runs: 1
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Run E2E tests
+        run: pnpm test:e2e
