@@ -29,13 +29,13 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
   title="Blog - Ratko Simidzija"
   description="Thoughts, learnings, and explorations in software engineering"
 >
-  <h1 class="page-title animate">Blog</h1>
+  <h1 class="page-title">Blog</h1>
 
   {
     years.length > 0 ? (
       <div class="posts-by-year">
         {years.map((year) => (
-          <section class="year-section animate">
+          <section class="year-section">
             <div class="year-heading">{year}</div>
             <div class="posts">
               {postsByYear[Number(year)].map((post) => (

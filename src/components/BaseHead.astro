@@ -176,13 +176,6 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 <!-- Page Initialization Scripts -->
 <script is:inline>
   function initPage() {
-    const animateElements = document.querySelectorAll('.animate');
-    animateElements.forEach((element, index) => {
-      setTimeout(() => {
-        element.classList.add('show');
-      }, index * 150);
-    });
-
     const headings = document.querySelectorAll('h2[id]');
     headings.forEach((heading) => {
       heading.setAttribute('tabindex', '0');
@@ -233,16 +226,16 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 
   document.addEventListener('DOMContentLoaded', initPage);
   document.addEventListener('astro:after-swap', initPage);
+
+  // Scroll to top on page navigation
+  document.addEventListener('astro:after-swap', () => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
 </script>
 
 <!-- Plausible Analytics (production only, privacy-respecting) -->
 {
   import.meta.env.PROD && (
-    <script
-      is:inline
-      defer
-      data-domain="sixra.github.io"
-      src="https://plausible.io/js/script.js"
-    />
+    <script is:inline defer data-domain="sixra.github.io" src="https://plausible.io/js/script.js" />
   )
 }

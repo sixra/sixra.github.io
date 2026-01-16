@@ -29,13 +29,13 @@ const postsWithMeta = posts.map((post) => ({
   title={`Posts tagged "${tag}" - Ratko Simidzija`}
   description={`All posts tagged with ${tag}`}
 >
-  <div class="tag-header animate">
+  <div class="tag-header">
     <a href="/blog" class="back-link">← Back to Blog</a>
     <h1 class="page-title">Posts tagged "{tag}"</h1>
     <p class="post-count">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
   </div>
 
-  <div class="posts animate">
+  <div class="posts">
     {
       postsWithMeta.map((post) => (
         <BlogCard

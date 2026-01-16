@@ -18,9 +18,10 @@ interface Props {
   readingTime?: number;
   tags?: string[];
   relatedPosts?: CollectionEntry<'blog'>[];
+  slug: string;
 }
 
-const { title, description, pubDate, updatedDate, image, readingTime, tags, relatedPosts } =
+const { title, description, pubDate, updatedDate, image, readingTime, tags, relatedPosts, slug } =
   Astro.props;
 const publishedTime = pubDate.toISOString();
 const modifiedTime = updatedDate?.toISOString();
@@ -45,12 +46,12 @@ const modifiedTime = updatedDate?.toISOString();
       <article>
         {
           image && (
-            <div class="featured-image animate">
+            <div class="featured-image">
               <img src={image} alt={title} loading="lazy" />
             </div>
           )
         }
-        <div class="post-meta animate">
+        <div class="post-meta">
           <div class="meta-line">
             <FormattedDate date={pubDate} />
             {
@@ -73,17 +74,17 @@ const modifiedTime = updatedDate?.toISOString();
             }
           </div>
         </div>
-        <header class="post-header animate">
-          <h1>{title}</h1>
+        <header class="post-header">
+          <h1 transition:name={`post-title-${slug}`}>{title}</h1>
         </header>
         {
           tags && tags.length > 0 && (
-            <div class="post-tags animate">
+            <div class="post-tags">
               <TagList tags={tags} />
             </div>
           )
         }
-        <div class="prose animate">
+        <div class="prose">
           <slot />
         </div>
         <AuthorBio />

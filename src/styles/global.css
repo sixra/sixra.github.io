@@ -189,14 +189,16 @@ main.container {
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in-out;
+  animation-duration: 0.15s;
+  animation-timing-function: ease-out;
 }
 
 .card {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  transition: all var(--transition-base);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
 }
 
 .card:hover {
@@ -234,19 +236,6 @@ main.container {
   h3 {
     font-size: 1.375rem;
   }
-}
-
-.animate {
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 0.7s ease-out,
-    transform 0.7s ease-out;
-}
-
-.animate.show {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 h2[id] {
@@ -318,12 +307,6 @@ h2[id]:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

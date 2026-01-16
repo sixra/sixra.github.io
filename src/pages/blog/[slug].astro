@@ -24,6 +24,6 @@ const readingTime = calculateReadingTime(post.body);
 const relatedPosts = await getRelatedPosts(post.slug, post.data.tags);
 ---
 
-<BlogPost {...post.data} readingTime={readingTime} relatedPosts={relatedPosts}>
+<BlogPost {...post.data} slug={post.slug} readingTime={readingTime} relatedPosts={relatedPosts}>
   <Content />
 </BlogPost>

@@ -13,7 +13,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
   title="Ratko Simidzija | JavaScript Developer"
   description="JavaScript Developer specializing in React, TypeScript, and modern web development. Currently building e-commerce platforms at ePages. Five years of experience with web applications."
 >
-  <section class="intro animate">
+  <section class="intro">
     <h1>Ratko Simidzija</h1>
     <p class="headline">JavaScript Developer</p>
     <div class="bio">
@@ -52,7 +52,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
     </div>
   </section>
 
-  <section class="work-experience animate">
+  <section class="work-experience">
     <h2 id="work-experience">Work Experience</h2>
     <ul class="experience-list list-reset flex-column">
       <ExperienceItem
@@ -84,7 +84,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
     </ul>
   </section>
 
-  <section class="education animate">
+  <section class="education">
     <h2 id="education">Education</h2>
     <ul class="experience-list list-reset flex-column">
       <ExperienceItem
@@ -110,7 +110,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
 
   {
     posts.length > 0 && (
-      <section class="recent-posts animate">
+      <section class="recent-posts">
         <SectionHeader title="Recent Posts" href="/blog" linkText="View all →" />
         <ul class="posts-list list-reset flex-column">
           {posts.map((post) => (

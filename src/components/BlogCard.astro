@@ -18,7 +18,7 @@ const { title, description, pubDate, slug, readingTime, tags, image } = Astro.pr
 <article class="blog-card card">
   <a href={`/blog/${slug}`} class="card-link">
     {image && <img src={image} alt={title} class="card-image" loading="lazy" />}
-    <h3>{title}</h3>
+    <h3 transition:name={`post-title-${slug}`}>{title}</h3>
     <p class="description">{description}</p>
     {
       tags && tags.length > 0 && (
