@@ -10,7 +10,7 @@ const { title, description, slug } = Astro.props;
 
 <a href={`/blog/${slug}`} class="arrow-card card">
   <div class="card-content">
-    <div class="card-title">{title}</div>
+    <div class="card-title" data-blog-title data-slug={slug}>{title}</div>
     <div class="card-description">{description}</div>
   </div>
 

@@ -183,14 +183,11 @@ main.container {
   margin-bottom: var(--space-xl);
 }
 
-@view-transition {
-  navigation: auto;
-}
-
+/* View transition animation timing for ClientRouter */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 0.15s;
-  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
 }
 
 .card {
