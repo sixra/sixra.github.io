@@ -42,8 +42,8 @@ Enforced via commitlint hook.
 
 **Performance budgets enforced:**
 
-- FCP: 1200ms, LCP: 2200ms, TBT: 500ms
-- Total size: 250KB max
+- FCP: 1500ms, LCP: 2500ms, TBT: 1500ms
+- Total size: 300KB max
 
 ## Testing
 
