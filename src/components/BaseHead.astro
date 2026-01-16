@@ -234,3 +234,15 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
   document.addEventListener('DOMContentLoaded', initPage);
   document.addEventListener('astro:after-swap', initPage);
 </script>
+
+<!-- Plausible Analytics (production only, privacy-respecting) -->
+{
+  import.meta.env.PROD && (
+    <script
+      is:inline
+      defer
+      data-domain="sixra.github.io"
+      src="https://plausible.io/js/script.js"
+    />
+  )
+}

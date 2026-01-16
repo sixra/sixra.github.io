@@ -6,6 +6,7 @@
   --color-text-muted: #a09d9d;
   --color-link: #ff7f6e;
   --color-link-hover: #ff6347;
+  --color-link-transparent: rgba(255, 127, 110, 0.1);
   --color-border: #2a2c34;
   --color-bg-rgb: 19, 20, 24;
 
