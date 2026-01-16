@@ -19,7 +19,6 @@ const {
   type = 'website'
 } = Astro.props;
 
-// Use provided image or default to OG image
 const defaultOgImage = new URL('/sr-logo-1200x630.png', Astro.site);
 const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 ---
@@ -173,7 +172,6 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 <!-- Page Initialization Scripts -->
 <script is:inline>
   function initPage() {
-    // Text reveal animations
     const animateElements = document.querySelectorAll('.animate');
     animateElements.forEach((element, index) => {
       setTimeout(() => {
@@ -181,10 +179,8 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
       }, index * 150);
     });
 
-    // Copy link functionality
     const headings = document.querySelectorAll('h2[id]');
     headings.forEach(heading => {
-      // Add keyboard accessibility attributes
       heading.setAttribute('tabindex', '0');
       heading.setAttribute('role', 'button');
       heading.setAttribute('aria-label', `Copy link to ${heading.textContent}`);
@@ -194,10 +190,8 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
         if (id) {
           const url = `${window.location.origin}${window.location.pathname}#${id}`;
 
-          // Update URL without scroll jump
           window.history.pushState({}, '', `#${id}`);
 
-          // Copy to clipboard
           navigator.clipboard.writeText(url).then(() => {
             showToast('Link copied to clipboard!');
           }).catch(err => {
@@ -207,10 +201,8 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
         }
       }
 
-      // Mouse click support
       heading.addEventListener('click', handleCopy);
 
-      // Keyboard support
       heading.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -232,7 +224,6 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
     }
   }
 
-  // Single initialization point for all page scripts
   document.addEventListener('DOMContentLoaded', initPage);
   document.addEventListener('astro:after-swap', initPage);
 </script>

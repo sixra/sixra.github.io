@@ -5,13 +5,11 @@ import BlogCard from '@components/BlogCard.astro';
 
 const posts = await getPublishedPosts();
 
-// Calculate reading time for each post
 const postsWithMeta = posts.map(post => ({
   ...post,
   readingTime: calculateReadingTime(post.body)
 }));
 
-// Group posts by year
 const postsByYear = postsWithMeta.reduce((acc, post) => {
   const year = post.data.pubDate.getFullYear();
   if (!acc[year]) {

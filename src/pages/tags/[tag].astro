@@ -19,7 +19,6 @@ interface Props {
 const { tag } = Astro.props;
 const posts = await getPostsByTag(tag);
 
-// Calculate reading time for each post
 const postsWithMeta = posts.map(post => ({
   ...post,
   readingTime: calculateReadingTime(post.body)
