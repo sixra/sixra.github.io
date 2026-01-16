@@ -1,6 +1,6 @@
 {
-  "name": "Ratko Simidzija | JavaScript Developer",
-  "short_name": "Ratko Simidzija",
+  "name": "Ratko Simidzija",
+  "short_name": "sixra",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,9 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ff7f6e",
-  "background_color": "#131418",
-  "display": "standalone",
-  "start_url": "/",
-  "description": "JavaScript Developer specializing in React, TypeScript, and modern web development"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
 }
