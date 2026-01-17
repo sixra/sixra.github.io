@@ -105,7 +105,7 @@ describe('getPostsByTag', () => {
     const posts = await getPostsByTag('typescript');
 
     expect(posts.length).toBe(1);
-    expect(posts[0].slug).toBe('typescript-tips');
+    expect(posts[0].id).toBe('typescript-tips');
   });
 
   it('matches tags case-sensitively', async () => {
@@ -118,8 +118,8 @@ describe('getPostsByTag', () => {
     const posts = await getPostsByTag('javascript');
 
     expect(posts.length).toBe(2);
-    expect(posts.some((p) => p.slug === 'typescript-tips')).toBe(true);
-    expect(posts.some((p) => p.slug === 'react-patterns')).toBe(true);
+    expect(posts.some((p) => p.id === 'typescript-tips')).toBe(true);
+    expect(posts.some((p) => p.id === 'react-patterns')).toBe(true);
   });
 
   it('returns empty array when tag not found', async () => {
@@ -145,7 +145,7 @@ describe('getRelatedPosts', () => {
   it('excludes current post from results', async () => {
     const relatedPosts = await getRelatedPosts('typescript-tips', ['typescript', 'javascript']);
 
-    const includesCurrentPost = relatedPosts.some((post) => post.slug === 'typescript-tips');
+    const includesCurrentPost = relatedPosts.some((post) => post.id === 'typescript-tips');
     expect(includesCurrentPost).toBe(false);
   });
 
@@ -153,7 +153,7 @@ describe('getRelatedPosts', () => {
     const relatedPosts = await getRelatedPosts('typescript-tips', ['javascript', 'programming']);
 
     expect(relatedPosts.length).toBeGreaterThan(0);
-    expect(relatedPosts[0].slug).toBe('react-patterns');
+    expect(relatedPosts[0].id).toBe('react-patterns');
   });
 
   it('respects MAX_RELATED_POSTS limit', async () => {
@@ -190,7 +190,7 @@ describe('getRelatedPosts', () => {
     expect(relatedPosts.length).toBeGreaterThan(0);
 
     const firstPost = relatedPosts[0];
-    expect(['typescript-tips', 'react-patterns'].includes(firstPost.slug)).toBe(true);
+    expect(['typescript-tips', 'react-patterns'].includes(firstPost.id)).toBe(true);
   });
 
   it('returns empty array on error', async () => {

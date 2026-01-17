@@ -1,13 +1,14 @@
 ---
 import { getPublishedPosts, calculateReadingTime, getRelatedPosts } from '@/utils/blog';
 import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 import BlogPost from '@layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
@@ -17,13 +18,13 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
-const readingTime = calculateReadingTime(post.body);
+const readingTime = calculateReadingTime(post.body || '');
 
-const relatedPosts = await getRelatedPosts(post.slug, post.data.tags);
+const relatedPosts = await getRelatedPosts(post.id, post.data.tags);
 ---
 
-<BlogPost {...post.data} slug={post.slug} readingTime={readingTime} relatedPosts={relatedPosts}>
+<BlogPost {...post.data} slug={post.id} readingTime={readingTime} relatedPosts={relatedPosts}>
   <Content />
 </BlogPost>

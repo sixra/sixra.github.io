@@ -16,8 +16,8 @@ const { posts } = Astro.props;
       <ul class="related-list list-reset">
         {posts.map((post) => (
           <li>
-            <a href={`/blog/${post.slug}`} class="related-link">
-              <span class="related-title" data-blog-title data-slug={post.slug}>
+            <a href={`/blog/${post.id}`} class="related-link">
+              <span class="related-title" data-blog-title data-slug={post.id}>
                 {post.data.title}
               </span>
               <span class="related-date">

@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { ClientRouter } from 'astro:transitions';
+import { Image } from 'astro:assets';
 import BaseHead from '@components/BaseHead.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
@@ -49,7 +50,14 @@ const modifiedTime = updatedDate?.toISOString();
         {
           image && (
             <div class="featured-image">
-              <img src={image} alt={title} loading="lazy" />
+              <Image
+                src={image}
+                alt={title}
+                width={800}
+                height={450}
+                format="webp"
+                loading="lazy"
+              />
             </div>
           )
         }

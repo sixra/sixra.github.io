@@ -118,7 +118,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
               <ArrowCard
                 title={post.data.title}
                 description={post.data.description}
-                slug={post.slug}
+                slug={post.id}
               />
             </li>
           ))}

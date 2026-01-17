@@ -1,0 +1,40 @@
+---
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const { title, description, image, type } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} image={image} type={type} />
+    <!-- ClientRouter removed for performance on 404 page -->
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content" class="container">
+      <slot />
+    </main>
+    <Footer />
+    <div
+      class="copy-toast"
+      id="globalCopyToast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      Link copied to clipboard!
+    </div>
+  </body>
+</html>

@@ -16,7 +16,7 @@ export type CollectionEntry<T extends string = string> = {
 
 const mockBlogPosts: CollectionEntry<'blog'>[] = [
   {
-    id: 'post-1.md',
+    id: 'typescript-tips',
     slug: 'typescript-tips',
     body: 'Content about TypeScript',
     collection: 'blog',
@@ -29,7 +29,7 @@ const mockBlogPosts: CollectionEntry<'blog'>[] = [
     },
   },
   {
-    id: 'post-2.md',
+    id: 'react-patterns',
     slug: 'react-patterns',
     body: 'Content about React',
     collection: 'blog',
@@ -42,7 +42,7 @@ const mockBlogPosts: CollectionEntry<'blog'>[] = [
     },
   },
   {
-    id: 'post-3.md',
+    id: 'astro-guide',
     slug: 'astro-guide',
     body: 'Content about Astro',
     collection: 'blog',
@@ -55,7 +55,7 @@ const mockBlogPosts: CollectionEntry<'blog'>[] = [
     },
   },
   {
-    id: 'post-4.md',
+    id: 'draft-post',
     slug: 'draft-post',
     body: 'Draft content',
     collection: 'blog',
@@ -68,7 +68,7 @@ const mockBlogPosts: CollectionEntry<'blog'>[] = [
     },
   },
   {
-    id: 'post-5.md',
+    id: 'no-tags-post',
     slug: 'no-tags-post',
     body: 'Content without tags',
     collection: 'blog',

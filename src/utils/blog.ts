@@ -70,12 +70,12 @@ export async function getPostsByTag(tag: string) {
 /**
  * Get related posts based on shared tags
  * Uses tag matching to find similar content
- * @param currentSlug - Slug of current post to exclude from results
+ * @param currentId - ID of current post to exclude from results
  * @param tags - Tags of current post to match against
  * @returns Up to 3 posts sorted by number of matching tags (most relevant first)
  */
 export async function getRelatedPosts(
-  currentSlug: string,
+  currentId: string,
   tags?: string[]
 ): Promise<CollectionEntry<'blog'>[]> {
   try {
@@ -84,7 +84,7 @@ export async function getRelatedPosts(
     const allPosts = await getPublishedPosts();
 
     const postsWithScore = allPosts
-      .filter((post) => post.slug !== currentSlug)
+      .filter((post) => post.id !== currentId)
       .map((post) => {
         const matchingTags = post.data.tags?.filter((tag) => tags.includes(tag)).length || 0;
         return { post, score: matchingTags };
@@ -95,7 +95,7 @@ export async function getRelatedPosts(
 
     return postsWithScore.map((item) => item.post);
   } catch (error) {
-    console.error(`Failed to get related posts for "${currentSlug}":`, error);
+    console.error(`Failed to get related posts for "${currentId}":`, error);
     return [];
   }
 }
