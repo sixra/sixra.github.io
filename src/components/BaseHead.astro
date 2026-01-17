@@ -290,7 +290,7 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 
 <!-- Service Worker Registration (production only) -->
 {
-  import.meta.env.PROD && (
+  import.meta.env.PROD && Astro.url.pathname !== '/404/' && (
     <script is:inline>
       if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function
       (err) {console.error('SW registration failed:', err)})
@@ -300,7 +300,7 @@ const ogImage = image ? new URL(image, Astro.site) : defaultOgImage;
 
 <!-- Plausible Analytics (production only, privacy-respecting) -->
 {
-  import.meta.env.PROD && (
+  import.meta.env.PROD && Astro.url.pathname !== '/404/' && (
     <script is:inline defer data-domain="sixra.github.io" src="https://plausible.io/js/script.js" />
   )
 }

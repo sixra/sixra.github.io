@@ -37,6 +37,7 @@ jobs:
           urls: |
             http://localhost:8080/
             http://localhost:8080/blog/
+            http://localhost:8080/404/
           uploadArtifacts: true
           temporaryPublicStorage: true
           budgetPath: '.github/lighthouse/budget.json'
@@ -51,6 +52,7 @@ jobs:
             http://localhost:8080/
             http://localhost:8080/blog/
             http://localhost:8080/about/
+            http://localhost:8080/404/
           uploadArtifacts: true
           temporaryPublicStorage: true
           budgetPath: '.github/lighthouse/budget.json'
