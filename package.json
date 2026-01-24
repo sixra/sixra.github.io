@@ -1,0 +1,67 @@
+{
+  "name": "sixra.dev",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest --coverage",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "astro check",
+    "clean": "rm -rf dist .astro && ni",
+    "validate": "nr format && nr lint:fix && nr type-check && nr build && nr test:e2e && nr test",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "@iconify-json/tabler": "^1.2.26",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.11",
+    "astro-icon": "^1.1.5",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/ts-plugin": "^1.10.6",
+    "@axe-core/playwright": "^4.11.0",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.57.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/ui": "^4.0.17",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-tailwindcss": "^3.18.2",
+    "happy-dom": "^20.3.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.53.0",
+    "vitest": "^4.0.17"
+  },
+  "lint-staged": {
+    "*.{js,ts,astro}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
+  }
+}

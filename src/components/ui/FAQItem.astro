@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  question: string;
+  answer: string;
+  id: string;
+  defaultOpen?: boolean;
+}
+
+const { question, answer, id, defaultOpen = false } = Astro.props;
+---
+
+<details
+  class="faq-item group rounded-lg border border-gray-200 bg-white transition-colors hover:border-gray-300"
+  open={defaultOpen}
+  id={id}
+>
+  <summary
+    class="flex cursor-pointer list-none items-center justify-between p-6"
+    aria-expanded={defaultOpen ? 'true' : 'false'}
+  >
+    <h3 class="pr-4 text-lg font-semibold text-gray-900">
+      {question}
+    </h3>
+    <Icon
+      name="tabler:chevron-down"
+      class="h-5 w-5 flex-shrink-0 text-gray-500 transition-transform group-open:rotate-180"
+      aria-hidden="true"
+    />
+  </summary>
+  <div class="px-6 pt-2 pb-6 leading-relaxed text-gray-700">
+    <p>{answer}</p>
+  </div>
+</details>
+
+<style>
+  .faq-item summary {
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary:focus {
+    outline: 2px solid black;
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+
+  .faq-item summary:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .faq-item summary:focus-visible {
+    outline: 2px solid black;
+    outline-offset: 2px;
+  }
+</style>

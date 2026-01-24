@@ -1,0 +1,30 @@
+---
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import SocialLinks from '@components/ui/SocialLinks.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<SectionContainer id="contact">
+  <h2 id="contact" class="mb-6 text-3xl font-semibold text-gray-900 md:text-4xl">
+    {t('about.contact.title')}
+  </h2>
+  <p class="mb-6 text-gray-700">{t('about.contact.paragraph')}</p>
+  <div class="mb-6 space-y-3">
+    <p class="text-gray-700">
+      <strong>{t('about.contact.email')}:</strong>
+      <a href="mailto:comm.sr@tuta.com" class="ml-2 text-blue-800 underline">comm.sr@tuta.com</a>
+    </p>
+  </div>
+  <div class="social-links mb-8">
+    <SocialLinks class="gap-4" />
+  </div>
+  <div class="border-t border-gray-200 pt-8">
+    <p class="text-sm text-gray-600">
+      {t('about.footerNote')}
+      <a href="https://github.com/sixra/sixra.dev" class="text-blue-800 underline"> GitHub </a>.
+    </p>
+  </div>
+</SectionContainer>

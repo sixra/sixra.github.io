@@ -1,0 +1,15 @@
+---
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<SectionContainer>
+  <h1 class="mb-8 text-4xl font-bold text-gray-900 md:text-5xl">{t('about.title')}</h1>
+  <div class="space-y-4 text-lg text-gray-700">
+    <p>{t('about.intro.paragraph1')}</p>
+    <p>{t('about.intro.paragraph2')}</p>
+  </div>
+</SectionContainer>

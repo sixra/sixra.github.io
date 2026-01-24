@@ -1,0 +1,77 @@
+---
+import Reveal from '@components/utils/Reveal.astro';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import Card from '@components/ui/Card.astro';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+// Import company logos
+import epagesLogo from '@assets/epages.svg';
+import fxproLogo from '@assets/fxpro-logo.svg';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const experiences = [
+  {
+    icon: epagesLogo,
+    iconType: 'svg' as const,
+    company: 'ePages',
+    role: t('work.experience.epages.role'),
+    period: t('work.experience.epages.period'),
+    bullets: [
+      t('work.experience.epages.bullet1'),
+      t('work.experience.epages.bullet2'),
+      t('work.experience.epages.bullet3'),
+      t('work.experience.epages.bullet4'),
+      t('work.experience.epages.bullet5'),
+    ],
+  },
+  {
+    icon: fxproLogo,
+    iconType: 'svg' as const,
+    company: 'FxPro',
+    role: t('work.experience.fxpro.role'),
+    period: t('work.experience.fxpro.period'),
+    bullets: [
+      t('work.experience.fxpro.bullet1'),
+      t('work.experience.fxpro.bullet2'),
+      t('work.experience.fxpro.bullet3'),
+      t('work.experience.fxpro.bullet4'),
+      t('work.experience.fxpro.bullet5'),
+    ],
+  },
+];
+---
+
+<SectionContainer
+  id="work"
+  maxWidth="max-w-[980px]"
+  useReveal={false}
+  nested={true}
+  ariaLabelledby="work-heading"
+>
+  <Reveal>
+    <div class="mb-12 text-center">
+      <h2 id="work-heading" class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+        {t('work.title')}
+      </h2>
+    </div>
+  </Reveal>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    {
+      experiences.map((exp) => (
+        <Reveal>
+          <Card
+            icon={exp.icon}
+            iconType={exp.iconType}
+            title={exp.role}
+            subtitle={exp.company}
+            meta={exp.period}
+            highlights={exp.bullets}
+          />
+        </Reveal>
+      ))
+    }
+  </div>
+</SectionContainer>

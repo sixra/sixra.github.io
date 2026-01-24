@@ -1,0 +1,24 @@
+---
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const interests = [
+  t('about.interests.item1'),
+  t('about.interests.item2'),
+  t('about.interests.item3'),
+  t('about.interests.item4'),
+  t('about.interests.item5'),
+];
+---
+
+<SectionContainer id="interests">
+  <h2 class="mb-6 text-3xl font-semibold text-gray-900 md:text-4xl">
+    {t('about.interests.title')}
+  </h2>
+  <ul class="list-disc space-y-2 pl-6 text-gray-700">
+    {interests.map((interest) => <li>{interest}</li>)}
+  </ul>
+</SectionContainer>

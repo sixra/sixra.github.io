@@ -1,0 +1,90 @@
+---
+import type { ui, defaultLang } from '@i18n/ui';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import FAQItem from '@components/ui/FAQItem.astro';
+import Reveal from '@components/utils/Reveal.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Define all FAQ items grouped by category
+const technicalFaqs = ['react-experience', 'typescript', 'testing'];
+
+const experienceFaqs = ['remote-work', 'availability', 'project-examples'];
+
+const generalFaqs = ['location', 'languages', 'learning'];
+---
+
+<SectionContainer id="faq-section" ariaLabelledby="faq-heading">
+  <Reveal>
+    <h1 id="faq-heading" class="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
+      {t('faq.title')}
+    </h1>
+  </Reveal>
+  <Reveal>
+    <p class="mb-12 text-xl text-gray-600">
+      {t('faq.subtitle')}
+    </p>
+  </Reveal>
+
+  <!-- Technical Skills Category -->
+  <Reveal>
+    <div class="mb-12">
+      <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+        {t('faq.category.technical')}
+      </h2>
+      <div class="space-y-4">
+        {
+          technicalFaqs.map((id) => (
+            <FAQItem
+              id={id}
+              question={t(`faq.${id}.question` as keyof (typeof ui)[typeof defaultLang])}
+              answer={t(`faq.${id}.answer` as keyof (typeof ui)[typeof defaultLang])}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </Reveal>
+
+  <!-- Experience & Projects Category -->
+  <Reveal>
+    <div class="mb-12">
+      <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+        {t('faq.category.experience')}
+      </h2>
+      <div class="space-y-4">
+        {
+          experienceFaqs.map((id) => (
+            <FAQItem
+              id={id}
+              question={t(`faq.${id}.question` as keyof (typeof ui)[typeof defaultLang])}
+              answer={t(`faq.${id}.answer` as keyof (typeof ui)[typeof defaultLang])}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </Reveal>
+
+  <!-- General Category -->
+  <Reveal>
+    <div class="mb-12">
+      <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+        {t('faq.category.general')}
+      </h2>
+      <div class="space-y-4">
+        {
+          generalFaqs.map((id) => (
+            <FAQItem
+              id={id}
+              question={t(`faq.${id}.question` as keyof (typeof ui)[typeof defaultLang])}
+              answer={t(`faq.${id}.answer` as keyof (typeof ui)[typeof defaultLang])}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </Reveal>
+</SectionContainer>

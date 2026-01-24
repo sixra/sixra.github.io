@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: write
+
+jobs:
+  # Quality gates - only run on PRs or scheduled checks
+  commitlint:
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/commitlint.yml
+
+  lint:
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    uses: ./.github/workflows/lint.yml
+
+  unit-tests:
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    uses: ./.github/workflows/unit-test.yml
+
+  # Build - always run (needed for lighthouse artifact)
+  build:
+    uses: ./.github/workflows/build.yml
+
+  e2e-tests:
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    needs: [build]
+    uses: ./.github/workflows/e2e-test.yml
+
+  # Monitoring - always run
+  lighthouse:
+    needs: [build]
+    uses: ./.github/workflows/lighthouse.yml
+    with:
+      mode: ${{ github.event_name == 'pull_request' && 'pr' || 'main' }}
+
+  update-badges:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: [lighthouse]
+    uses: ./.github/workflows/update-badges.yml

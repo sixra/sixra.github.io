@@ -1,0 +1,28 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import HeroSection from '@templates/home/HeroSection.astro';
+import AboutSection from '@templates/home/AboutSection.astro';
+import SkillsSection from '@templates/home/SkillsSection.astro';
+import WorkSection from '@templates/home/WorkSection.astro';
+import EducationSection from '@templates/home/EducationSection.astro';
+import FAQPreviewSection from '@templates/faq/FAQPreviewSection.astro';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t('meta.home.title')} description={t('meta.home.description')}>
+  <Header />
+  <main id="main-content" class="bg-gray-50">
+    <HeroSection />
+    <AboutSection />
+    <SkillsSection />
+    <WorkSection />
+    <EducationSection />
+    <FAQPreviewSection />
+  </main>
+  <Footer />
+</Layout>

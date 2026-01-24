@@ -1,0 +1,19 @@
+---
+/**
+ * BreadcrumbList Schema
+ * Helps search engines understand site hierarchy
+ * May show breadcrumbs in search results
+ */
+
+import type { BreadcrumbItem } from '@utils/structuredData';
+import { generateBreadcrumbListSchema } from '@utils/structuredData';
+
+interface Props {
+  breadcrumbs: BreadcrumbItem[];
+}
+
+const { breadcrumbs } = Astro.props;
+const breadcrumbSchema = generateBreadcrumbListSchema(breadcrumbs);
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

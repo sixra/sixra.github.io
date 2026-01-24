@@ -1,0 +1,151 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Ratko Simidzija",
+    "label": "JavaScript Developer",
+    "image": "https://sixra.dev/images/ratko-simidzija.jpg",
+    "email": "comm.sr@tuta.com",
+    "url": "https://sixra.dev",
+    "summary": "JavaScript Developer with five years of experience building e-commerce platforms, trading applications, and modern web solutions. Specializing in React, TypeScript, and full-stack development with Remix. Strong focus on web accessibility standards and E2E testing. Previously worked in Business Management before transitioning to web development in 2020.",
+    "location": {
+      "city": "Limassol",
+      "countryCode": "CY",
+      "region": "Cyprus"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "sixra",
+        "url": "https://github.com/sixra"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "ratkosimidzija",
+        "url": "https://www.linkedin.com/in/ratkosimidzija"
+      },
+      {
+        "network": "Twitter",
+        "username": "sixra01",
+        "url": "https://x.com/sixra01"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "ePages",
+      "position": "JavaScript Developer",
+      "url": "https://www.epages.com",
+      "startDate": "2024-01",
+      "summary": "Building e-commerce platforms with React 19, Remix, Redux, and TypeScript in a monorepo architecture",
+      "highlights": [
+        "Develop features for customer storefronts and visual page editor using React 19, Remix, Redux, and TypeScript",
+        "Build and maintain Commerce Cockpit, a merchant admin platform with 50+ views for managing products, orders, and customers",
+        "Write unit tests with Jest and E2E tests with Cypress and Playwright to ensure code quality across platforms",
+        "Work within a monorepo architecture managing multiple interconnected packages and shared component libraries",
+        "Collaborate with design and backend teams to deliver features in two-week sprints"
+      ]
+    },
+    {
+      "name": "FxPro",
+      "position": "Frontend Developer",
+      "url": "https://www.fxpro.com",
+      "startDate": "2022-02",
+      "endDate": "2023-10",
+      "summary": "Developed trading platforms and financial applications using Angular, Svelte, and TypeScript",
+      "highlights": [
+        "Worked on main FxPro trading platform using Angular 11, TypeScript, and Svelte for interactive components",
+        "Created landing pages and marketing microsites with Gulp build workflows, featuring responsive designs and animations",
+        "Built email templates using EJS for multi-locale campaigns supporting multiple languages and regulatory requirements",
+        "Developed financial calculators and interactive trading tools integrated with Highcharts for data visualization",
+        "Worked on banking platform applications (BankPro, BnkPro) using Angular 9 and Bootstrap"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "DCI Digital Career Institute",
+      "url": "https://digitalcareerinstitute.org",
+      "area": "Web Development",
+      "studyType": "Full Stack Web Developer",
+      "startDate": "2020-11",
+      "endDate": "2021-12",
+      "courses": [
+        "HTML, CSS, and responsive web design",
+        "Modern JavaScript development with React, Express.js, and Node.js",
+        "Git version control and GitHub team workflow",
+        "Advanced database development with MongoDB and Mongoose"
+      ]
+    },
+    {
+      "institution": "MBS Business School",
+      "area": "Business Administration",
+      "studyType": "Bachelor",
+      "startDate": "2012",
+      "endDate": "2016"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Frontend Development",
+      "level": "Advanced",
+      "keywords": ["React", "TypeScript", "JavaScript", "HTML", "CSS"]
+    },
+    {
+      "name": "Frameworks & Libraries",
+      "level": "Advanced",
+      "keywords": ["Remix", "Redux", "Angular", "Svelte", "Astro"]
+    },
+    {
+      "name": "Backend & Full-Stack",
+      "level": "Intermediate",
+      "keywords": ["Node.js", "Express.js", "MongoDB"]
+    },
+    {
+      "name": "Testing",
+      "level": "Advanced",
+      "keywords": ["Jest", "Cypress", "Playwright", "E2E Testing"]
+    },
+    {
+      "name": "Build Tools & DevOps",
+      "level": "Intermediate",
+      "keywords": ["Webpack", "Gulp", "Git", "GitHub Actions"]
+    },
+    {
+      "name": "Specializations",
+      "level": "Advanced",
+      "keywords": [
+        "Web Accessibility",
+        "Responsive Design",
+        "E-commerce Platforms",
+        "Monorepo Architecture"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    },
+    {
+      "language": "Serbian",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Web Development",
+      "keywords": [
+        "React 19",
+        "Remix",
+        "Web Accessibility",
+        "E-commerce Architecture",
+        "Modern JavaScript"
+      ]
+    }
+  ],
+  "meta": {
+    "canonical": "https://sixra.dev/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2026-01-15"
+  }
+}

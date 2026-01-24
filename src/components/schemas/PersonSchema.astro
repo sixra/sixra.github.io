@@ -1,0 +1,13 @@
+---
+/**
+ * Person Schema
+ * Helps search engines understand the person/professional behind the site
+ * Establishes entity in knowledge graphs
+ */
+
+import { generatePersonSchema } from '@utils/structuredData';
+
+const personSchema = generatePersonSchema(Astro.url);
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />

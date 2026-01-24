@@ -1,0 +1,48 @@
+---
+import Reveal from '@components/utils/Reveal.astro';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import SocialLinks from '@components/ui/SocialLinks.astro';
+import FloatingLogos from '@components/ui/FloatingLogos.astro';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<SectionContainer
+  maxWidth="max-w-6xl"
+  padding="py-24 md:py-36"
+  useReveal={false}
+  ariaLabelledby="hero-heading"
+  class="hero-section-fullscreen"
+>
+  <FloatingLogos />
+
+  <div class="relative z-10 text-center">
+    <Reveal>
+      <h1 id="hero-heading" class="mb-6 text-6xl font-bold text-gray-900 md:text-8xl">
+        {t('home.title')}
+      </h1>
+    </Reveal>
+    <Reveal>
+      <p class="mb-8 text-3xl font-medium text-gray-600 md:text-4xl">
+        {t('home.headline')}
+      </p>
+    </Reveal>
+    <Reveal>
+      <div class="mb-12 flex justify-center">
+        <SocialLinks links={['github', 'linkedin', 'email']} />
+      </div>
+    </Reveal>
+    <Reveal>
+      <div class="flex justify-center">
+        <a
+          href="#about-preview"
+          class="rounded-lg border-2 border-gray-800 bg-transparent px-8 py-4 font-semibold text-gray-900 transition-colors hover:bg-gray-800 hover:text-gray-100 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-none"
+        >
+          {t('home.cta.secondary')}
+        </a>
+      </div>
+    </Reveal>
+  </div>
+</SectionContainer>

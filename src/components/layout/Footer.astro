@@ -1,0 +1,80 @@
+---
+import SocialLinks from '@components/ui/SocialLinks.astro';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import LanguageSwitcher from '@components/ui/LanguageSwitcher.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const currentLocale = Astro.currentLocale || 'en';
+---
+
+<footer class="mt-16 w-full border-t border-white/10 bg-neutral-800 px-4 py-8" role="contentinfo">
+  <div class="mx-auto max-w-[980px]">
+    <!-- Section 1: About -->
+    <div class="mb-6">
+      <h2 class="mb-2 text-xs font-semibold tracking-wider text-white uppercase">
+        {t('footer.about.title')}
+      </h2>
+      <p class="max-w-2xl text-[11px] leading-relaxed text-gray-300">
+        {t('footer.about.description')}
+      </p>
+    </div>
+
+    <!-- Section 2: Links (horizontal) -->
+    <div class="mb-6">
+      <h2 class="mb-2 text-xs font-semibold tracking-wider text-white uppercase">
+        {t('footer.links.title')}
+      </h2>
+      <nav class="flex flex-wrap gap-3 text-xs md:gap-5">
+        <a
+          href={getRelativeLocaleUrl(currentLocale, '/')}
+          class="text-gray-300 transition-colors hover:text-white"
+        >
+          {t('nav.home')}
+        </a>
+        <span class="hidden text-gray-600 md:inline">|</span>
+        <a
+          href={getRelativeLocaleUrl(currentLocale, '/about')}
+          class="text-gray-300 transition-colors hover:text-white"
+        >
+          {t('nav.about')}
+        </a>
+        <span class="hidden text-gray-600 md:inline">|</span>
+        <a
+          href={getRelativeLocaleUrl(currentLocale, '/contact')}
+          class="text-gray-300 transition-colors hover:text-white"
+        >
+          {t('nav.contact')}
+        </a>
+        <span class="hidden text-gray-600 md:inline">|</span>
+        <a
+          href={getRelativeLocaleUrl(currentLocale, '/faq')}
+          class="text-gray-300 transition-colors hover:text-white"
+        >
+          {t('nav.faq')}
+        </a>
+      </nav>
+    </div>
+
+    <!-- Section 3: Connect (horizontal) -->
+    <div class="mb-6">
+      <h2 class="mb-2 text-xs font-semibold tracking-wider text-white uppercase">
+        {t('footer.connect.title')}
+      </h2>
+      <SocialLinks variant="dark" class="gap-3" />
+    </div>
+
+    <!-- Section 4: Copyright and Language Switcher (Apple style) -->
+    <div
+      class="flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between"
+    >
+      <p class="text-center text-xs text-gray-300 md:text-left">
+        &copy; {new Date().getFullYear()} Ratko Simidzija. {t('footer.rights')}
+      </p>
+      <div class="flex justify-center md:justify-end">
+        <LanguageSwitcher compact={true} />
+      </div>
+    </div>
+  </div>
+</footer>

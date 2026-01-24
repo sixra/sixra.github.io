@@ -1,0 +1,13 @@
+---
+/**
+ * Organization Schema
+ * Helps search engines understand the organization associated with the person
+ * Strengthens entity signals for knowledge graph
+ */
+
+import { generateOrganizationSchema } from '@utils/structuredData';
+
+const organizationSchema = generateOrganizationSchema(Astro.url);
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />

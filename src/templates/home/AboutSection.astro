@@ -1,0 +1,25 @@
+---
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import Reveal from '@components/utils/Reveal.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<SectionContainer id="about-preview" ariaLabelledby="about-preview-heading">
+  <Reveal>
+    <h2
+      id="about-preview-heading"
+      class="mb-8 text-center text-3xl font-bold text-gray-900 md:text-4xl"
+    >
+      {t('home.about.title')}
+    </h2>
+  </Reveal>
+  <Reveal>
+    <div class="prose prose-lg mx-auto text-gray-700">
+      <p class="mb-4">{t('home.bio.paragraph1')}</p>
+      <p>{t('home.bio.paragraph2')}</p>
+    </div>
+  </Reveal>
+</SectionContainer>

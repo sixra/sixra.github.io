@@ -1,0 +1,22 @@
+---
+/**
+ * WebSite Schema
+ * Helps search engines understand site structure
+ */
+
+interface Props {
+  siteName: string;
+  siteUrl: string;
+}
+
+const { siteName, siteUrl } = Astro.props;
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteName,
+  url: siteUrl,
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />

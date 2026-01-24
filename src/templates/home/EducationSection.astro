@@ -1,0 +1,75 @@
+---
+import Reveal from '@components/utils/Reveal.astro';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import Card from '@components/ui/Card.astro';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+// Import education logos
+import dciLogo from '@assets/dci-logo.svg';
+import mbsLogo from '@assets/mbs.png';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const education = [
+  {
+    icon: dciLogo,
+    iconType: 'svg' as const,
+    school: 'DCI Digital Career Institute',
+    degree: t('education.dci.degree'),
+    period: t('education.dci.period'),
+    bullets: [
+      t('education.dci.bullet1'),
+      t('education.dci.bullet2'),
+      t('education.dci.bullet3'),
+      t('education.dci.bullet4'),
+    ],
+  },
+  {
+    icon: mbsLogo,
+    iconType: 'image' as const,
+    school: 'MBS Business School',
+    degree: t('education.mbs.degree'),
+    period: t('education.mbs.period'),
+    bullets: [
+      t('education.mbs.bullet1'),
+      t('education.mbs.bullet2'),
+      t('education.mbs.bullet3'),
+      t('education.mbs.bullet4'),
+    ],
+  },
+];
+---
+
+<SectionContainer
+  id="education"
+  maxWidth="max-w-[980px]"
+  useReveal={false}
+  nested={true}
+  ariaLabelledby="education-heading"
+>
+  <Reveal>
+    <div class="mb-12 text-center">
+      <h2 id="education-heading" class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+        {t('education.title')}
+      </h2>
+    </div>
+  </Reveal>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    {
+      education.map((edu) => (
+        <Reveal>
+          <Card
+            icon={edu.icon}
+            iconType={edu.iconType}
+            title={edu.degree}
+            subtitle={edu.school}
+            meta={edu.period}
+            highlights={edu.bullets}
+          />
+        </Reveal>
+      ))
+    }
+  </div>
+</SectionContainer>

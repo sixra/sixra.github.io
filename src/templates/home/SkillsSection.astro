@@ -1,0 +1,67 @@
+---
+import Reveal from '@components/utils/Reveal.astro';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import Card from '@components/ui/Card.astro';
+import type { ui, defaultLang } from '@i18n/ui';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const skills = [
+  { key: 'react', icon: 'tabler:brand-react' },
+  { key: 'typescript', icon: 'tabler:brand-typescript' },
+  { key: 'testing', icon: 'tabler:test-pipe' },
+  { key: 'angular', icon: 'tabler:brand-angular' },
+  { key: 'astro', icon: 'tabler:rocket' },
+  { key: 'accessibility', icon: 'tabler:accessible' },
+];
+---
+
+<SectionContainer
+  id="skills"
+  maxWidth="max-w-[980px]"
+  useReveal={false}
+  nested={true}
+  ariaLabelledby="skills-heading"
+>
+  <Reveal>
+    <div class="mb-12 text-center">
+      <h2 id="skills-heading" class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+        {t('skills.title')}
+      </h2>
+    </div>
+  </Reveal>
+
+  <div class="md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+    <div
+      class="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden px-4 md:contents"
+    >
+      {
+        skills.map((skill) => (
+          <Reveal>
+            <Card
+              class="w-[280px] flex-shrink-0 snap-center md:w-auto"
+              icon={skill.icon}
+              iconType="tabler"
+              title={t(`skills.${skill.key}.title` as keyof (typeof ui)[typeof defaultLang])}
+              description={t(
+                `skills.${skill.key}.description` as keyof (typeof ui)[typeof defaultLang]
+              )}
+            />
+          </Reveal>
+        ))
+      }
+    </div>
+  </div>
+</SectionContainer>
+
+<style>
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+  .overflow-x-auto {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import SocialLinks from '@components/ui/SocialLinks.astro';
+import Card from '@components/ui/Card.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<SectionContainer id="contact-details">
+  <h2 id="contact-details" class="mb-6 text-3xl font-semibold text-gray-900 md:text-4xl">
+    {t('contact.details.title')}
+  </h2>
+
+  <div class="space-y-6">
+    <Card>
+      <h3 class="mb-3 text-xl font-semibold text-gray-900">{t('contact.email.title')}</h3>
+      <p class="mb-2">
+        <a
+          href="mailto:comm.sr@tuta.com"
+          class="email-link text-lg font-medium text-blue-800 underline">comm.sr@tuta.com</a
+        >
+      </p>
+      <p class="text-sm text-gray-600">{t('contact.email.note')}</p>
+    </Card>
+
+    <Card>
+      <h3 class="mb-3 text-xl font-semibold text-gray-900">{t('contact.social.title')}</h3>
+      <div class="mb-3">
+        <SocialLinks class="gap-4" />
+      </div>
+      <p class="text-sm text-gray-600">{t('contact.social.note')}</p>
+    </Card>
+  </div>
+</SectionContainer>

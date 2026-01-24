@@ -1,0 +1,115 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+
+const currentLocale = Astro.currentLocale || 'en';
+const currentPath = Astro.url.pathname;
+
+// Remove locale prefix from path to get the base path
+const getBasePath = (path: string): string => {
+  const pathWithoutLocale = path.replace(/^\/(sr-latn|sr)\//, '/');
+  return pathWithoutLocale === '' ? '/' : pathWithoutLocale;
+};
+
+const basePath = getBasePath(currentPath);
+
+const languages = [
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'sr-latn', name: 'Srpski (latinica)', flag: '🇷🇸' },
+  { code: 'sr', name: 'Српски (ћирилица)', flag: '🇷🇸' },
+];
+
+const currentLanguage = languages.find((lang) => lang.code === currentLocale) || languages[0];
+---
+
+<div class="group relative">
+  <button
+    type="button"
+    class={`flex items-center gap-2 ${compact ? 'px-2 py-1.5 text-xs' : 'px-3 py-2 text-sm'} ${compact ? 'text-gray-300 hover:text-white hover:bg-white/10' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'} rounded-lg transition-colors min-h-[44px]`}
+    aria-label="Select language"
+    aria-expanded="false"
+    data-language-toggle
+  >
+    <span class={compact ? 'text-base' : 'text-xl'}>{currentLanguage.flag}</span>
+    <span>{currentLanguage.name}</span>
+    <Icon name="tabler:chevron-down" class={compact ? 'w-3 h-3' : 'w-4 h-4'} aria-hidden="true" />
+  </button>
+
+  <div
+    class={`hidden absolute right-0 ${compact ? 'bottom-full mb-2' : 'mt-2'} ${compact ? 'w-36' : 'w-48'} ${compact ? 'bg-neutral-700 border-white/10' : 'bg-white border-gray-200'} rounded-lg shadow-sm border py-2 z-50`}
+    data-language-menu
+    role="menu"
+  >
+    {
+      languages.map((lang) => {
+        const url = lang.code === 'en' ? basePath : getRelativeLocaleUrl(lang.code, basePath);
+        const isActive = lang.code === currentLocale;
+
+        return (
+          <a
+            href={url}
+            class={`flex items-center gap-2 px-3 py-2 ${compact ? 'text-xs' : 'text-sm'} ${compact ? 'hover:bg-white/10' : 'hover:bg-gray-50'} min-h-[44px] transition-colors ${
+              isActive
+                ? compact
+                  ? 'bg-white/10 font-semibold text-white'
+                  : 'bg-gray-50 font-semibold text-gray-900'
+                : compact
+                  ? 'text-gray-300'
+                  : 'text-gray-700'
+            }`}
+            role="menuitem"
+            aria-current={isActive ? 'page' : undefined}
+          >
+            <span class={compact ? 'text-base' : 'text-xl'}>{lang.flag}</span>
+            <span>{lang.name}</span>
+            {isActive && (
+              <Icon
+                name="tabler:check"
+                class={`${compact ? 'h-3 w-3' : 'h-4 w-4'} ml-auto ${compact ? 'text-white' : 'text-black'}`}
+                aria-hidden="true"
+              />
+            )}
+          </a>
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('[data-language-toggle]');
+    const menu = document.querySelector('[data-language-menu]');
+
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+      menu.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!toggle.contains(e.target as Node) && !menu.contains(e.target as Node)) {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+        (toggle as HTMLElement).focus();
+      }
+    });
+  });
+</script>

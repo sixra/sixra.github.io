@@ -1,0 +1,8 @@
+---
+// Component that renders 20 floating logo instances
+import logoSvg from '@assets/floating.svg?raw';
+---
+
+<div class="floating-logos-background" aria-hidden="true">
+  {Array.from({ length: 20 }).map(() => <Fragment set:html={logoSvg} />)}
+</div>

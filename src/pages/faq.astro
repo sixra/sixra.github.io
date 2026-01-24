@@ -1,0 +1,31 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import FAQSection from '@templates/faq/FAQSection.astro';
+import FAQPageSchema from '@components/schemas/FAQPageSchema.astro';
+import type { ui, defaultLang } from '@i18n/ui';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import type { FAQItem } from '@utils/structuredData';
+import { faqIds } from '@config/faq';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Build FAQ schema data
+const faqSchemaData: FAQItem[] = faqIds.map((id) => ({
+  question: t(`faq.${id}.question` as keyof (typeof ui)[typeof defaultLang]),
+  answer: t(`faq.${id}.answer` as keyof (typeof ui)[typeof defaultLang]),
+}));
+
+const canonicalURL = new URL('/faq', Astro.site);
+---
+
+<Layout title={t('meta.faq.title')} description={t('meta.faq.description')}>
+  <FAQPageSchema faqs={faqSchemaData} url={canonicalURL.toString()} />
+  <Header />
+  <main id="main-content" class="bg-gray-50">
+    <FAQSection />
+  </main>
+  <Footer />
+</Layout>

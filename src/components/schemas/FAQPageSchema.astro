@@ -1,0 +1,18 @@
+---
+/**
+ * FAQPage Schema
+ * Enables rich results in Google search with expandable Q&A snippets
+ */
+
+import { generateFAQPageSchema, type FAQItem } from '@utils/structuredData';
+
+interface Props {
+  faqs: FAQItem[];
+  url: string;
+}
+
+const { faqs, url } = Astro.props;
+const schema = generateFAQPageSchema(faqs, url);
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

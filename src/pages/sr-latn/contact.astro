@@ -1,0 +1,24 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import ContactIntroSection from '@templates/contact/ContactIntroSection.astro';
+import ContactDetailsSection from '@templates/contact/ContactDetailsSection.astro';
+import ContactAvailabilitySection from '@templates/contact/ContactAvailabilitySection.astro';
+import ContactResponseTimeSection from '@templates/contact/ContactResponseTimeSection.astro';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t('meta.contact.title')} description={t('meta.contact.description')}>
+  <Header />
+  <main id="main-content">
+    <ContactIntroSection />
+    <ContactDetailsSection />
+    <ContactAvailabilitySection />
+    <ContactResponseTimeSection />
+  </main>
+  <Footer />
+</Layout>

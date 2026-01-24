@@ -1,0 +1,180 @@
+name: Update README Badges
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  update-badges:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Download coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+        continue-on-error: true
+
+      - name: Download Lighthouse results
+        uses: actions/download-artifact@v4
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
+        continue-on-error: true
+
+      - name: Extract metrics and update badges
+        run: |
+          mkdir -p .github/badges
+
+          # Extract test coverage
+          COVERAGE="n/a"
+          COVERAGE_COLOR="lightgrey"
+          if [ -f "coverage/coverage-summary.json" ]; then
+            COVERAGE=$(node -e "const data = require('./coverage/coverage-summary.json'); console.log(Math.round(data.total.lines.pct))")
+            COVERAGE_COLOR=$([ "$COVERAGE" -ge 80 ] && echo 'brightgreen' || echo 'yellow')
+          fi
+          echo "{ \"schemaVersion\": 1, \"label\": \"coverage\", \"message\": \"${COVERAGE}%\", \"color\": \"${COVERAGE_COLOR}\" }" > .github/badges/coverage.json
+
+          # Extract Lighthouse scores from main pages only (exclude utility pages)
+          METRICS=$(node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          const EXCLUDE_PATTERNS = [
+            /\/404\.html$/,
+            /\/google[a-z0-9]+\.html$/,
+          ];
+
+          const lhrDir = '.lighthouseci';
+          let files = [];
+          try {
+            files = fs.readdirSync(lhrDir)
+              .filter(f => f.startsWith('lhr-') && f.endsWith('.json'))
+              .map(f => path.join(lhrDir, f));
+          } catch (err) {
+            console.error('No Lighthouse results found');
+            process.exit(0);
+          }
+
+          const scores = { perf: [], a11y: [], bp: [], seo: [], fcp: [], lcp: [], size: [] };
+
+          files.forEach(file => {
+            try {
+              const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+              const url = data.finalUrl || data.requestedUrl || '';
+              const urlPath = url.replace(/http:\/\/localhost:\d+/, '');
+
+              if (EXCLUDE_PATTERNS.some(pattern => pattern.test(urlPath))) {
+                console.error(\`⏭️  Excluding \${urlPath} from badge calculations\`);
+                return;
+              }
+
+              console.error(\`✅ Including \${urlPath} in badge calculations\`);
+
+              scores.perf.push(Math.round(data.categories.performance.score * 100));
+              scores.a11y.push(Math.round(data.categories.accessibility.score * 100));
+              scores.bp.push(Math.round(data.categories['best-practices'].score * 100));
+              scores.seo.push(Math.round(data.categories.seo.score * 100));
+              scores.fcp.push(Math.round(data.audits['first-contentful-paint'].numericValue));
+              scores.lcp.push(Math.round(data.audits['largest-contentful-paint'].numericValue));
+
+              const summary = data.audits['resource-summary'].details.items;
+              const total = summary.find(item => item.resourceType === 'total');
+              scores.size.push(Math.round(total.transferSize / 1024));
+            } catch (err) {
+              console.error(\`Error processing \${file}: \${err.message}\`);
+            }
+          });
+
+          // Calculate minimums (or max for size)
+          const min = (arr) => arr.length > 0 ? Math.min(...arr) : null;
+          const max = (arr) => arr.length > 0 ? Math.max(...arr) : null;
+
+          console.log(JSON.stringify({
+            perf: min(scores.perf),
+            a11y: min(scores.a11y),
+            bp: min(scores.bp),
+            seo: min(scores.seo),
+            fcp: min(scores.fcp),
+            lcp: max(scores.lcp),
+            size: max(scores.size),
+          }));
+          " 2>&1)
+
+          METRICS_JSON=$(echo "$METRICS" | tail -1)
+
+          PERF="n/a"
+          A11Y="n/a"
+          BP="n/a"
+          SEO="n/a"
+          FCP="n/a"
+          LCP="n/a"
+          SIZE="n/a"
+          PERF_COLOR="lightgrey"
+          A11Y_COLOR="lightgrey"
+          BP_COLOR="lightgrey"
+          SEO_COLOR="lightgrey"
+          FCP_COLOR="lightgrey"
+          LCP_COLOR="lightgrey"
+          SIZE_COLOR="lightgrey"
+
+          if echo "$METRICS_JSON" | grep -q "perf"; then
+            PERF=$(echo "$METRICS_JSON" | node -e "const data = JSON.parse(require('fs').readFileSync(0, 'utf8')); console.log(data.perf || 'n/a')")
+            A11Y=$(echo "$METRICS_JSON" | node -e "const data = JSON.parse(require('fs').readFileSync(0, 'utf8')); console.log(data.a11y || 'n/a')")
+            BP=$(echo "$METRICS_JSON" | node -e "const data = JSON.parse(require('fs').readFileSync(0, 'utf8')); console.log(data.bp || 'n/a')")
+            SEO=$(echo "$METRICS_JSON" | node -e "const data = JSON.parse(require('fs').readFileSync(0, 'utf8')); console.log(data.seo || 'n/a')")
+            FCP=$(echo "$METRICS_JSON" | node -e "const data = JSON.parse(require('fs').readFileSync(0, 'utf8')); console.log(data.fcp || 'n/a')")
+            LCP=$(echo "$METRICS_JSON" | node -e "const data = JSON.parse(require('fs').readFileSync(0, 'utf8')); console.log(data.lcp || 'n/a')")
+            SIZE=$(echo "$METRICS_JSON" | node -e "const data = JSON.parse(require('fs').readFileSync(0, 'utf8')); console.log(data.size || 'n/a')")
+
+            # Set colors based on scores
+            [ "$PERF" != "n/a" ] && [ "$PERF" != "null" ] && PERF_COLOR=$([ "$PERF" -ge 90 ] && echo 'brightgreen' || echo 'yellow')
+            [ "$A11Y" != "n/a" ] && [ "$A11Y" != "null" ] && A11Y_COLOR=$([ "$A11Y" -ge 90 ] && echo 'brightgreen' || echo 'yellow')
+            [ "$BP" != "n/a" ] && [ "$BP" != "null" ] && BP_COLOR=$([ "$BP" -ge 90 ] && echo 'brightgreen' || echo 'yellow')
+            [ "$SEO" != "n/a" ] && [ "$SEO" != "null" ] && SEO_COLOR=$([ "$SEO" -ge 90 ] && echo 'brightgreen' || echo 'yellow')
+            [ "$FCP" != "n/a" ] && [ "$FCP" != "null" ] && FCP_COLOR=$([ "$FCP" -le 1200 ] && echo 'brightgreen' || echo 'yellow')
+            [ "$LCP" != "n/a" ] && [ "$LCP" != "null" ] && LCP_COLOR=$([ "$LCP" -le 2500 ] && echo 'brightgreen' || echo 'yellow')
+            [ "$SIZE" != "n/a" ] && [ "$SIZE" != "null" ] && SIZE_COLOR=$([ "$SIZE" -le 250 ] && echo 'brightgreen' || echo 'yellow')
+          fi
+
+          # Generate badge JSON files
+          echo "{ \"schemaVersion\": 1, \"label\": \"performance\", \"message\": \"${PERF}%\", \"color\": \"${PERF_COLOR}\" }" > .github/badges/lighthouse-performance.json
+          echo "{ \"schemaVersion\": 1, \"label\": \"accessibility\", \"message\": \"${A11Y}%\", \"color\": \"${A11Y_COLOR}\" }" > .github/badges/lighthouse-accessibility.json
+          echo "{ \"schemaVersion\": 1, \"label\": \"best practices\", \"message\": \"${BP}%\", \"color\": \"${BP_COLOR}\" }" > .github/badges/lighthouse-best-practices.json
+          echo "{ \"schemaVersion\": 1, \"label\": \"SEO\", \"message\": \"${SEO}%\", \"color\": \"${SEO_COLOR}\" }" > .github/badges/lighthouse-seo.json
+          echo "{ \"schemaVersion\": 1, \"label\": \"FCP\", \"message\": \"${FCP}ms\", \"color\": \"${FCP_COLOR}\" }" > .github/badges/fcp.json
+          echo "{ \"schemaVersion\": 1, \"label\": \"LCP\", \"message\": \"${LCP}ms\", \"color\": \"${LCP_COLOR}\" }" > .github/badges/lcp.json
+          echo "{ \"schemaVersion\": 1, \"label\": \"size\", \"message\": \"${SIZE}KB\", \"color\": \"${SIZE_COLOR}\" }" > .github/badges/size.json
+
+      - name: Commit badge data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/badges/
+          git diff --staged --quiet || git commit -m "chore: update readme badges [skip ci]"
+          git push

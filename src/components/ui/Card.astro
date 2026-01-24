@@ -1,0 +1,79 @@
+---
+import { Icon } from 'astro-icon/components';
+import OptimizedImage from './OptimizedImage.astro';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  icon?: string | ImageMetadata;
+  iconType?: 'tabler' | 'svg' | 'image';
+  title?: string;
+  subtitle?: string;
+  meta?: string;
+  description?: string;
+  highlights?: string[];
+  class?: string;
+}
+
+const {
+  icon,
+  iconType = 'tabler',
+  title,
+  subtitle,
+  meta,
+  description,
+  highlights,
+  class: className = '',
+} = Astro.props;
+
+const hasSlotContent = Astro.slots.has('default');
+const hasStructuredContent = title || description || (highlights && highlights.length > 0);
+const isStructuredMode = !hasSlotContent && hasStructuredContent;
+---
+
+<div
+  class={`bg-white border border-gray-200 rounded-lg p-6 h-full flex flex-col gap-4 ${className}`}
+>
+  {
+    isStructuredMode ? (
+      <>
+        {icon && (
+          <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg">
+            {iconType === 'tabler' && typeof icon === 'string' ? (
+              <Icon name={icon} class="h-12 w-12" aria-hidden="true" />
+            ) : iconType !== 'tabler' ? (
+              <OptimizedImage
+                src={icon}
+                alt=""
+                width={64}
+                height={64}
+                class="h-full w-full object-contain"
+                aria-hidden="true"
+              />
+            ) : null}
+          </div>
+        )}
+
+        <div class={icon ? '' : 'mb-4'}>
+          {title && <h3 class="text-xl font-semibold text-gray-900">{title}</h3>}
+          {subtitle && <p class="mb-1 font-medium text-blue-800">{subtitle}</p>}
+          {meta && <p class="text-sm text-gray-700">{meta}</p>}
+        </div>
+
+        {description && <p class="flex-1 leading-relaxed text-gray-600">{description}</p>}
+
+        {highlights && highlights.length > 0 && (
+          <ul class="space-y-2 text-sm text-gray-600">
+            {highlights.map((highlight) => (
+              <li class="flex items-baseline gap-2">
+                <span class="shrink-0 text-gray-400">•</span>
+                <span class="leading-relaxed">{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
+    ) : (
+      <slot />
+    )
+  }
+</div>

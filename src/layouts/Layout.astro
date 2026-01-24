@@ -1,0 +1,143 @@
+---
+import '../styles/global.css';
+import { SITE } from '@config/site';
+import SEO from '@components/SEO.astro';
+import WebSiteSchema from '@components/schemas/WebSiteSchema.astro';
+import PersonSchema from '@components/schemas/PersonSchema.astro';
+import OrganizationSchema from '@components/schemas/OrganizationSchema.astro';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  canonicalURL,
+  image,
+  type = 'website',
+  noindex = false,
+  nofollow = false,
+} = Astro.props;
+
+const currentLocale = Astro.currentLocale || 'en';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Build robots meta content
+const robotsContent = [noindex ? 'noindex' : 'index', nofollow ? 'nofollow' : 'follow'].join(', ');
+
+// Register CSP hashes for inline scripts
+Astro.csp.insertScriptHash('sha256-dKksvch86ymn2563DnswDZvKep7JjIOeFPx4CyWlLXk=');
+Astro.csp.insertScriptHash('sha256-DaDg5qPl4DZiHL2zzSCKynKM4QViM4UhUCdpgLAOYHA=');
+---
+
+<!doctype html>
+<html lang={currentLocale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicons - Multiple formats for broad compatibility -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme colors for browsers and mobile -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- SEO Meta Tags, Hreflang, and JSON-LD Schema -->
+    <SEO
+      title={title}
+      description={description}
+      canonicalURL={canonicalURL}
+      image={image}
+      type={type}
+    />
+
+    <!-- WebSite Schema for Homepage -->
+    {Astro.url.pathname === '/' && <WebSiteSchema siteName={SITE.title} siteUrl={SITE.url} />}
+
+    <!-- Person Schema for Homepage -->
+    {Astro.url.pathname === '/' && <PersonSchema />}
+
+    <!-- Organization Schema for Homepage -->
+    {Astro.url.pathname === '/' && <OrganizationSchema />}
+
+    <meta name="robots" content={robotsContent} />
+
+    <!-- Link to sitemap for crawlers -->
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <!-- Additional head content from pages -->
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-black focus:px-4 focus:py-2 focus:text-white focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none"
+    >
+      {t('nav.skipToContent')}
+    </a>
+    <slot />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        root.classList.add('reveal-enabled');
+
+        const revealElements = Array.from(document.querySelectorAll('.reveal'));
+        if (revealElements.length === 0) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          revealElements.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
+        if (!('IntersectionObserver' in window)) {
+          revealElements.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            });
+          },
+          {
+            rootMargin: '0px 0px -10% 0px',
+            threshold: 0.15,
+          }
+        );
+
+        revealElements.forEach((el) => observer.observe(el));
+      })();
+    </script>
+    <script is:inline>
+      if ('serviceWorker' in navigator && window.location.pathname !== '/404/') {
+        navigator.serviceWorker.register('/sw.js').catch(function (err) {
+          console.error('SW registration failed:', err);
+        });
+      }
+    </script>
+  </body>
+</html>

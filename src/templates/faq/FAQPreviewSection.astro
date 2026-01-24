@@ -1,0 +1,58 @@
+---
+import type { ui, defaultLang } from '@i18n/ui';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import SectionContainer from '@components/sections/SectionContainer.astro';
+import FAQItem from '@components/ui/FAQItem.astro';
+import Reveal from '@components/utils/Reveal.astro';
+import { Icon } from 'astro-icon/components';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Featured FAQ items (most important/common)
+const featuredFaqs = ['react-experience', 'typescript', 'remote-work', 'availability'];
+
+// Generate locale-aware FAQ page URL
+const currentLocale = Astro.currentLocale || 'en';
+const faqUrl = getRelativeLocaleUrl(currentLocale, '/faq');
+---
+
+<SectionContainer id="faq-preview" ariaLabelledby="faq-preview-heading">
+  <Reveal>
+    <div class="mb-12 text-center">
+      <h2 id="faq-preview-heading" class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+        {t('faq.preview.title')}
+      </h2>
+      <p class="text-xl text-gray-600">
+        {t('faq.subtitle')}
+      </p>
+    </div>
+  </Reveal>
+
+  <Reveal>
+    <div class="mb-8 space-y-4">
+      {
+        featuredFaqs.map((id) => (
+          <FAQItem
+            id={`preview-${id}`}
+            question={t(`faq.${id}.question` as keyof (typeof ui)[typeof defaultLang])}
+            answer={t(`faq.${id}.answer` as keyof (typeof ui)[typeof defaultLang])}
+          />
+        ))
+      }
+    </div>
+  </Reveal>
+
+  <Reveal>
+    <div class="text-center">
+      <a
+        href={faqUrl}
+        class="inline-flex items-center gap-2 rounded-lg bg-black px-6 py-3 font-medium text-white transition-colors hover:bg-gray-800 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none"
+      >
+        {t('faq.preview.cta')}
+        <Icon name="tabler:arrow-right" class="h-5 w-5" aria-hidden="true" />
+      </a>
+    </div>
+  </Reveal>
+</SectionContainer>

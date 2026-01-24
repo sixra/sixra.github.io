@@ -1,0 +1,42 @@
+---
+import type { ui, defaultLang } from '@i18n/ui';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import SectionContainer from './SectionContainer.astro';
+
+interface Props {
+  sectionKey: string;
+  sectionId: string;
+  maxWidth?: 'max-w-3xl' | 'max-w-[720px]' | 'max-w-4xl' | 'max-w-6xl';
+  padding?: 'py-12' | 'py-16' | 'py-20';
+  class?: string;
+  backgroundColor?: 'white' | 'gray' | 'none';
+}
+
+const {
+  sectionKey,
+  sectionId,
+  maxWidth = 'max-w-[720px]',
+  padding = 'py-16',
+  class: className = '',
+  backgroundColor = 'white',
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<SectionContainer
+  id={sectionId}
+  maxWidth={maxWidth}
+  padding={padding}
+  class={className}
+  backgroundColor={backgroundColor}
+>
+  <h2 id={sectionId} class="mb-6 text-3xl font-semibold text-gray-900 md:text-4xl">
+    {t(`${sectionKey}.title` as keyof (typeof ui)[typeof defaultLang])}
+  </h2>
+  <div class="space-y-4 text-gray-700">
+    <p>{t(`${sectionKey}.paragraph1` as keyof (typeof ui)[typeof defaultLang])}</p>
+    <p>{t(`${sectionKey}.paragraph2` as keyof (typeof ui)[typeof defaultLang])}</p>
+  </div>
+</SectionContainer>

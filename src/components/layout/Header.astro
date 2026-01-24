@@ -1,0 +1,239 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import OptimizedImage from '@components/ui/OptimizedImage.astro';
+import logo from '../../assets/sr-logo.svg';
+import { getLangFromUrl, useTranslations } from '@i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const currentLocale = Astro.currentLocale || 'en';
+const navLinks = [
+  { href: getRelativeLocaleUrl(currentLocale, '/'), label: t('nav.home'), id: 'home' },
+  { href: getRelativeLocaleUrl(currentLocale, '/about'), label: t('nav.about'), id: 'about' },
+  {
+    href: getRelativeLocaleUrl(currentLocale, '/contact'),
+    label: t('nav.contact'),
+    id: 'contact',
+  },
+  { href: getRelativeLocaleUrl(currentLocale, '/faq'), label: t('nav.faq'), id: 'faq' },
+];
+---
+
+<header
+  class="sticky top-0 z-[100] flex h-11 w-full items-center border-b border-gray-200/30 bg-white/80 px-4 backdrop-blur-md supports-backdrop-filter:bg-white/45"
+  role="banner"
+>
+  <!-- Skip to content link for accessibility -->
+  <a href="#main-content" class="sr-only">
+    {t('nav.skipToContent')}
+  </a>
+
+  <nav
+    class="mx-auto flex w-full max-w-[980px] items-center justify-between"
+    aria-label="Main navigation"
+  >
+    <a
+      href="/"
+      class="flex items-center text-gray-900 transition-colors hover:text-gray-700"
+      aria-label="Ratko Simidzija - Home"
+    >
+      <OptimizedImage
+        src={logo}
+        alt="Ratko Simidzija logo"
+        class="site-logo h-8 w-auto"
+        width={32}
+        height={32}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </a>
+
+    <button
+      type="button"
+      class="relative rounded-lg p-2 text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none md:hidden"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      id="mobile-menu-button"
+    >
+      <Icon
+        name="tabler:menu-2"
+        class="burger-icon h-6 w-6 transition-all duration-300"
+        aria-hidden="true"
+      />
+      <Icon
+        name="tabler:x"
+        class="close-icon absolute inset-0 m-auto h-6 w-6 scale-75 rotate-90 opacity-0 transition-all duration-300"
+        aria-hidden="true"
+      />
+    </button>
+
+    <div class="hidden items-center gap-4 md:flex">
+      <ul class="flex items-center gap-6">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-xs leading-none tracking-[-0.01em] text-gray-600 transition-colors hover:text-gray-900"
+                aria-current={
+                  Astro.url.pathname === link.href ||
+                  (link.id === 'home' && Astro.url.pathname === '/')
+                    ? 'page'
+                    : undefined
+                }
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<nav
+  id="mobile-menu"
+  class="fixed top-11 right-0 left-0 z-40 h-[60vh] -translate-y-full rounded-b-md bg-white/85 opacity-0 shadow-2xl backdrop-blur-[40px] transition-all duration-500 ease-in-out md:hidden"
+  class:list={['pointer-events-none']}
+  aria-label="Mobile navigation"
+>
+  <div class="flex h-full flex-col items-center justify-center px-8">
+    <ul class="flex flex-col space-y-6 md:space-y-8">
+      {
+        navLinks.map((link) => (
+          <li class="menu-item translate-y-4 opacity-0 transition-all duration-300 ease-out">
+            <a
+              href={link.href}
+              class="block rounded-lg px-6 py-4 text-center text-4xl font-semibold tracking-tight text-gray-900 transition-all duration-300 hover:scale-105 hover:bg-gray-50 hover:text-gray-600 md:text-5xl"
+              aria-current={
+                Astro.url.pathname === link.href ||
+                (link.id === 'home' && Astro.url.pathname === '/')
+                  ? 'page'
+                  : undefined
+              }
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // ============================================================================
+  // Mobile Menu Toggle with Apple-style Animations
+  // ============================================================================
+
+  const ANIMATION = {
+    MENU_ITEM_INITIAL_DELAY: 200,
+    MENU_ITEM_STAGGER: 150,
+  } as const;
+
+  const CLASSES = {
+    MENU_HIDDEN: ['opacity-0', 'pointer-events-none', '-translate-y-full'],
+    MENU_VISIBLE: ['opacity-100', 'pointer-events-auto', 'translate-y-0'],
+    ICON_HIDDEN: ['opacity-0', '-rotate-90', 'scale-75'],
+    ICON_VISIBLE: ['opacity-100', 'rotate-0', 'scale-100'],
+    ITEM_HIDDEN: ['opacity-0', 'translate-y-4'],
+    ITEM_VISIBLE: ['opacity-100', 'translate-y-0'],
+  } as const;
+
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const burgerIcon = document.querySelector('.burger-icon');
+  const closeIcon = document.querySelector('.close-icon');
+  const menuItems = document.querySelectorAll('.menu-item');
+  const menuLinks = mobileMenu?.querySelectorAll('a');
+
+  let isMenuOpen = false;
+
+  function toggleMenu(): void {
+    (menuButton as HTMLElement)?.blur();
+
+    isMenuOpen = !isMenuOpen;
+    menuButton?.setAttribute('aria-expanded', String(isMenuOpen));
+
+    if (isMenuOpen) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  }
+
+  function openMenu(): void {
+    mobileMenu?.classList.remove(...CLASSES.MENU_HIDDEN);
+    mobileMenu?.classList.add(...CLASSES.MENU_VISIBLE);
+
+    burgerIcon?.classList.add(...CLASSES.ICON_HIDDEN);
+    closeIcon?.classList.remove('opacity-0', 'rotate-90', 'scale-75');
+    closeIcon?.classList.add(...CLASSES.ICON_VISIBLE);
+
+    menuItems.forEach((item, index) => {
+      setTimeout(
+        () => {
+          item.classList.remove(...CLASSES.ITEM_HIDDEN);
+          item.classList.add(...CLASSES.ITEM_VISIBLE);
+        },
+        ANIMATION.MENU_ITEM_INITIAL_DELAY + index * ANIMATION.MENU_ITEM_STAGGER
+      );
+    });
+
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeMenu(): void {
+    mobileMenu?.classList.remove(...CLASSES.MENU_VISIBLE);
+    mobileMenu?.classList.add(...CLASSES.MENU_HIDDEN);
+
+    burgerIcon?.classList.remove(...CLASSES.ICON_HIDDEN);
+    closeIcon?.classList.remove(...CLASSES.ICON_VISIBLE);
+    closeIcon?.classList.add('opacity-0', 'rotate-90', 'scale-75');
+
+    menuItems.forEach((item) => {
+      item.classList.remove(...CLASSES.ITEM_VISIBLE);
+      item.classList.add(...CLASSES.ITEM_HIDDEN);
+    });
+
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  // ============================================================================
+  // Event Listeners
+  // ============================================================================
+
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener('click', toggleMenu);
+
+    menuLinks?.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (isMenuOpen) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Close on outside click (visible 40% area below menu)
+    document.addEventListener('click', (e) => {
+      if (
+        isMenuOpen &&
+        !menuButton.contains(e.target as Node) &&
+        !mobileMenu.contains(e.target as Node)
+      ) {
+        toggleMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        toggleMenu();
+        menuButton.focus();
+      }
+    });
+  }
+</script>
