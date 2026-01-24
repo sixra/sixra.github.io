@@ -167,35 +167,35 @@ export const ui = {
     // Technical Skills Q&A
     'faq.react-experience.question': 'Koje tehnologije trenutno koristite?',
     'faq.react-experience.answer':
-      'Svakodnevno radim sa React 19, Remix i TypeScript u ePages-u. Za testiranje koristim Jest za jedinične testove i Cypress i Playwright za end-to-end testiranje. Pre ePages-a, radio sam sa Angular i Svelte u FxPro-u, i imam iskustva sa Node.js-om.',
-    'faq.typescript.question': 'Šta trenutno učite ili istražujete?',
+      'Svakodnevno radim sa React 19, Remix i TypeScript u ePages. Za testiranje koristim Jest za jedinične testove i Cypress i Playwright za end-to-end testiranje. Pre ePages, radio sam sa Angular i Svelte u FxPro, i imam iskustva sa Node.js. Za side projekte u slobodno vreme, stvarno uživam u građenju sa Astro.',
+    'faq.typescript.question': 'Kako pristupate arhitekturi komponenti?',
     'faq.typescript.answer':
-      'Trenutno se bavim React 19 obrascima i Server Components, istražujem više šta Remix može, i proučavam web pristupačnost (WCAG standarde). Van posla, stvarno uživam u građenju sa Astro. Ovaj sajt je zapravo izgrađen sa njim. Uvek ima nešto novo za naučiti, što čini stvari zanimljivim.',
-    'faq.testing.question': 'Kakvo je vaše iskustvo sa e-commerce platformama?',
+      'Verujem da kod treba da bude organizovan i lako održiv. Volim male, fokusirane komponente koje rade jednu stvar dobro. Kompozicija umesto kompleksnosti. Gradim veće funkcionalnosti od manjih delova koje mogu da koristim više puta. Radio sam u monorepo sa deljenim bibliotekama komponenti u ePages, tako da znam koliko je važno držati komponente čiste i dobro strukturirane. To čini kod lakšim za navigaciju i štedi vreme kada treba napraviti izmene.',
+    'faq.testing.question': 'Koje testne frameworke koristite?',
     'faq.testing.answer':
-      'U ePages-u radim na dve glavne platforme: prodavnicu (storefront) sa vizuelnim editorom stranica, i Commerce Cockpit, admin sistem za trgovce sa preko 50 pogleda za upravljanje proizvodima, porudžbinama i korisnicima. Uglavnom React komponente, poslovna logika, API integracije, i osigurati da sve radi zajedno u monorepo-u.',
+      'Koristim Jest i React Testing Library za jedinične i integracione testove, i Cypress i Playwright za E2E testiranje. U ePages pišem testove i za storefront i za Commerce Cockpit admin sistem. Veliki je deo posla održati stvari pouzdanim, posebno u monorepo gde promene mogu uticati na više paketa. Dobri testovi štede vreme dugoročno.',
 
     // Experience & Background Q&A
-    'faq.remote-work.question': 'Zašto ste prešli iz business management-a u programiranje?',
+    'faq.remote-work.question': 'Zašto ste prešli iz poslovnog menadžmenta u programiranje?',
     'faq.remote-work.answer':
       'Želeo sam da gradim stvari i rešavam konkretne probleme. 2020. godine upisao sam DCI u Berlinu i napravio prelazak. Iskreno, bila je to jedna od najboljih odluka koje sam doneo. Postoji nešto stvarno zadovoljavajuće u rešavanju problema kroz kod i gledanju kako funkcionalnosti oživljavaju.',
-    'faq.availability.question': 'Na kakvim projektima radite u ePages-u?',
+    'faq.availability.question': 'Da li ste otvoreni za nove prilike?',
     'faq.availability.answer':
-      'Radim i na storefront prodavnicama i na Commerce Cockpit admin platformi. Svakodnevno to znači izgradnja React komponenti, implementacija funkcionalnosti sa Remix i Redux, integracija sa backend API-jima i pisanje testova. Pošto smo u monorepo-u, obraćam pažnju i na to kako promene utiču na druge pakete.',
+      'Trenutno sam zaposlen puno radno vreme u ePages i ne tražim aktivno novi posao. Ipak, uvek sam raspoložen za interesantne razgovore o web razvoju, potencijalnim saradnjama, ili prilikama koje se poklapaju sa mojim interesovanjima. Ako želite da se povežemo, slobodno me kontaktirajte.',
     'faq.project-examples.question': 'Kako vam poslovna pozadina pomaže kao programeru?',
     'faq.project-examples.answer':
       'To što sam studirao business management pomaže mi da razumem kako kompanije zapravo funkcionišu, što je korisno kad gradim softver za poslovne korisnike. Mogu bolje razumeti šta zainteresovane strane trebaju, videti kako funkcionalnosti se uklapaju u veće poslovne ciljeve, i ceniti zašto određene tehničke odluke imaju značaj van samog koda.',
 
     // Collaboration & Networking Q&A
-    'faq.location.question': 'Koje testne radne okvire koristite?',
+    'faq.location.question': 'Gde ste bazirani i da li radite na daljinu?',
     'faq.location.answer':
-      'Koristim Jest i React Testing Library za jedinične i integracione testove, i Cypress i Playwright za E2E. U ePages-u, pišem testove i za storefront i za Commerce Cockpit admin sistem. Veliki je deo posla održati stvari pouzdanim, posebno u monorepo-u gde promene mogu uticati na više paketa.',
-    'faq.languages.question': 'Da li ste otvoreni za nove prilike?',
+      'Baziran sam u Limasolu, Kipar, i radim remote za ePages, što je nemačka kompanija. Komforan sam sa radom sa distribuiranim timovima kroz različite vremenske zone. To radim svakodnevno. Ovakav način rada mi odgovara, i nemam problema sa tehničkom komunikacijom ili saradnjom kada svi rade remote.',
+    'faq.languages.question': 'Koje jezike govorite?',
     'faq.languages.answer':
-      'Trenutno sam zaposlen puno radno vreme u ePages-u i ne tražim aktivno novi posao. Ipak, uvek sam raspoložen za interesantne razgovore o web razvoju, potencijalnim saradnjama, ili prilikama koje se poklapaju sa mojim interesovanjima. Ako želite da se povežemo, slobodno me kontaktirajte.',
-    'faq.learning.question': 'Koje jezike govorite?',
+      'Govorim engleski tečno (C1/C2 nivo) i srpski mi je maternji jezik. Radim svakodnevno sa distribuiranim timovima kroz različite vremenske zone, tako da nemam problema sa tehničkom komunikacijom ili dokumentacijom na engleskom.',
+    'faq.learning.question': 'Šta trenutno učite ili istražujete?',
     'faq.learning.answer':
-      'Govorim engleski tečno (C1/C2 nivo) i srpski maternji. Radim svakodnevno sa distribuiranim timovima kroz različite vremenske zone, tako da nemam problema sa tehničkom komunikacijom ili dokumentacijom na engleskom.',
+      'Trenutno se bavim React 19 i Server Components, istražujem više šta Remix može, i proučavam web pristupačnost (WCAG standarde). Van posla, stvarno uživam da radim sa Astro. Ovaj sajt je zapravo izgrađen sa njim. Uvek ima nešto novo za naučiti, što čini stvari zanimljivim.',
   },
   sr: {
     'nav.home': 'Почетна',
@@ -357,35 +357,35 @@ export const ui = {
     // Technical Skills Q&A
     'faq.react-experience.question': 'Које технологије тренутно користите?',
     'faq.react-experience.answer':
-      'Свакодневно радим са React 19, Remix и TypeScript у ePages-у. За тестирање користим Jest за јединичне тестове и Cypress и Playwright за end-to-end тестирање. Пре ePages-а, радио сам са Angular и Svelte у FxPro-у, и имам искуства са Node.js-ом.',
-    'faq.typescript.question': 'Шта тренутно учите или истражујете?',
+      'Свакодневно радим са React 19, Remix и TypeScript у ePages. За тестирање користим Jest за јединичне тестове и Cypress и Playwright за end-to-end тестирање. Пре ePages, радио сам са Angular и Svelte у FxPro, и имам искуства са Node.js. За side пројекте у слободно време, стварно уживам у грађењу са Astro.',
+    'faq.typescript.question': 'Како приступате архитектури компоненти?',
     'faq.typescript.answer':
-      'Тренутно се бавим React 19 обрасцима и Server Components, истражујем више шта Remix може, и проучавам веб приступачност (WCAG стандарде). Ван посла, стварно уживам у грађењу са Astro. Овај сајт је заправо изграђен са њим. Увек има нешто ново за научити, што чини ствари занимљивим.',
-    'faq.testing.question': 'Какво је ваше искуство са e-commerce платформама?',
+      'Верујем да код треба да буде организован и лако одржив. Волим мале, фокусиране компоненте које раде једну ствар добро. Композиција уместо комплексности. Градим веће функционалности од мањих делова које могу да користим више пута. Радио сам у монорепо са дељеним библиотекама компоненти у ePages, тако да знам колико је важно држати компоненте чисте и добро структуиране. То чини код лакшим за навигацију и штеди време када треба направити измене.',
+    'faq.testing.question': 'Које тестне frameworke користите?',
     'faq.testing.answer':
-      'У ePages-у радим на две главне платформе: продавницу (storefront) са визуелним едитором страница, и Commerce Cockpit, админ систем за трговце са преко 50 погледа за управљање производима, поруџбинама и корисницима. Углавном React компоненте, пословна логика, API интеграције, и осигурати да све ради заједно у monorepo-у.',
+      'Користим Jest и React Testing Library за јединичне и интеграционе тестове, и Cypress и Playwright за E2E тестирање. У ePages пишем тестове и за storefront и за Commerce Cockpit админ систем. Велики је део посла одржати ствари поузданим, посебно у monorepo где промене могу утицати на више пакета. Добри тестови штеде време дугорочно.',
 
     // Experience & Background Q&A
-    'faq.remote-work.question': 'Зашто сте прешли из business management-а у програмирање?',
+    'faq.remote-work.question': 'Зашто сте прешли из пословног менаџмента у програмирање?',
     'faq.remote-work.answer':
       'Желео сам да градим ствари и решавам конкретне проблеме. 2020. године уписао сам DCI у Берлину и направио прелазак. Искрено, била је то једна од најбољих одлука које сам донео. Постоји нешто стварно задовољавајуће у решавању проблема кроз код и гледању како функционалности оживљавају.',
-    'faq.availability.question': 'На каквим пројектима радите у ePages-у?',
+    'faq.availability.question': 'Да ли сте отворени за нове прилике?',
     'faq.availability.answer':
-      'Радим и на storefront продавницама и на Commerce Cockpit админ платформи. Свакодневно то значи изградња React компоненти, имплементација функционалности са Remix и Redux, интеграција са backend API-јима и писање тестова. Пошто смо у monorepo-у, обраћам пажњу и на то како промене утичу на друге пакете.',
+      'Тренутно сам запослен пуно радно време у ePages и не тражим активно нови посао. Ипак, увек сам расположен за интересантне разговоре о веб развоју, потенцијалним сарадњама, или приликама које се поклапају са мојим интересовањима. Ако желите да се повежемо, слободно ме контактирајте.',
     'faq.project-examples.question': 'Како вам пословна позадина помаже као програмеру?',
     'faq.project-examples.answer':
       'То што сам студирао business management помаже ми да разумем како компаније заправо функционишу, што је корисно кад градим софтвер за пословне кориснике. Могу боље разумети шта заинтересоване стране требају, видети како функционалности се уклапају у веће пословне циљеве, и ценити зашто одређене техничке одлуке имају значај ван самог кода.',
 
     // Collaboration & Networking Q&A
-    'faq.location.question': 'Које тестне радне оквире користите?',
+    'faq.location.question': 'Где сте базирани и да ли радите на даљину?',
     'faq.location.answer':
-      'Користим Jest и React Testing Library за јединичне и интеграционе тестове, и Cypress и Playwright за E2E. У ePages-у, пишем тестове и за storefront и за Commerce Cockpit админ систем. Велики је део посла одржати ствари поузданим, посебно у monorepo-у где промене могу утицати на више пакета.',
-    'faq.languages.question': 'Да ли сте отворени за нове прилике?',
+      'Базиран сам у Лимасолу, Кипар, и радим remote за ePages, што је немачка компанија. Комфоран сам са радом са дистрибуираним тимовима кроз различите временске зоне. То радим свакодневно. Овакав начин рада ми одговара, и немам проблема са техничком комуникацијом или сарадњом када сви раде remote.',
+    'faq.languages.question': 'Које језике говорите?',
     'faq.languages.answer':
-      'Тренутно сам запослен пуно радно време у ePages-у и не тражим активно нови посао. Ипак, увек сам расположен за интересантне разговоре о веб развоју, потенцијалним сарадњама, или приликама које се поклапају са мојим интересовањима. Ако желите да се повежемо, слободно ме контактирајте.',
-    'faq.learning.question': 'Које језике говорите?',
+      'Говорим енглески течно (C1/C2 ниво) и српски ми је матерњи језик. Радим свакодневно са дистрибуираним тимовима кроз различите временске зоне, тако да немам проблема са техничком комуникацијом или документацијом на енглеском.',
+    'faq.learning.question': 'Шта тренутно учите или истражујете?',
     'faq.learning.answer':
-      'Говорим енглески течно (C1/C2 ниво) и српски матерњи. Радим свакодневно са дистрибуираним тимовима кроз различите временске зоне, тако да немам проблема са техничком комуникацијом или документацијом на енглеском.',
+      'Тренутно се бавим React 19 и Server Components, истражујем више шта Remix може, и проучавам веб приступачност (WCAG стандарде). Ван посла, стварно уживам да радим са Astro. Овај сајт је заправо изграђен са њим. Увек има нешто ново за научити, што чини ствари занимљивим.',
   },
   en: {
     'nav.home': 'Home',
@@ -547,35 +547,35 @@ export const ui = {
     // Technical Skills Q&A
     'faq.react-experience.question': "What's your current tech stack?",
     'faq.react-experience.answer':
-      "Day-to-day, I work with React 19, Remix, and TypeScript at ePages. For testing, I use Jest for unit tests and Cypress and Playwright for end-to-end testing. Before ePages, I spent time with Angular and Svelte at FxPro, and I've done some Node.js work as well.",
-    'faq.typescript.question': 'What are you currently learning or exploring?',
+      "Day-to-day, I work with React 19, Remix, and TypeScript at ePages. For testing, I use Jest for unit tests and Cypress and Playwright for end-to-end testing. Before ePages, I spent time with Angular and Svelte at FxPro, and I've done some Node.js work as well. For side projects in my free time, I really enjoy building with Astro.",
+    'faq.typescript.question': 'How do you approach component architecture?',
     'faq.typescript.answer':
-      "Right now I'm diving into React 19 patterns and Server Components, exploring more of what Remix can do, and studying web accessibility (WCAG standards). Outside of work, I really enjoy building with Astro. This site is actually built with it. There's always something new to learn, which keeps things interesting.",
-    'faq.testing.question': "What's your experience with e-commerce platforms?",
+      "I'm a big believer in keeping things organized and maintainable. I prefer small, focused components that do one thing well. Composition over complexity. Building bigger features from smaller, reusable pieces. I've worked in a monorepo with shared component libraries at ePages, so I've seen how important it is to keep components clean and well structured. It makes the codebase easier to navigate and saves time when you need to make changes.",
+    'faq.testing.question': 'What testing frameworks do you use?',
     'faq.testing.answer':
-      "At ePages, I work on two main platforms: customer storefronts with a visual page editor, and Commerce Cockpit, which is the merchant admin system with 50+ views for managing products, orders, and customers. It's mostly React components, business logic, API integrations, and making sure everything works together in the monorepo.",
+      "I use Jest and React Testing Library for unit and integration tests, and both Cypress and Playwright for E2E testing. At ePages, I write tests for the storefront and the Commerce Cockpit admin system. It's a big part of keeping things reliable, especially in a monorepo where changes can affect multiple packages. Good tests save time in the long run.",
 
     // Experience & Background Q&A
     'faq.remote-work.question': 'Why did you switch from business management to development?',
     'faq.remote-work.answer':
       "I wanted to build things and solve concrete problems. In 2020, I enrolled at DCI in Berlin and made the switch. Honestly, it was one of the best decisions I've made. There's something really satisfying about solving problems through code and watching features come to life.",
-    'faq.availability.question': 'What kind of projects do you work on at ePages?',
+    'faq.availability.question': 'Are you open to new opportunities?',
     'faq.availability.answer':
-      "I work on both the customer-facing storefronts and the Commerce Cockpit admin platform. Day-to-day, that means building React components, implementing features with Remix and Redux, integrating with backend APIs, and writing tests. Since we're in a monorepo, I also pay attention to how changes affect other packages.",
+      "I'm currently employed full-time at ePages and not actively job searching. That said, I'm always up for interesting conversations about web development, potential collaborations, or opportunities that align with my interests. If you want to connect, feel free to reach out.",
     'faq.project-examples.question': 'How does your business background help you as a developer?',
     'faq.project-examples.answer':
       'Having studied business management helps me understand how companies actually work, which is useful when building software for business users. I can better understand what stakeholders need, see how features fit into bigger business goals, and appreciate why certain technical decisions matter beyond just the code.',
 
     // Collaboration & Networking Q&A
-    'faq.location.question': 'What testing frameworks do you use?',
+    'faq.location.question': 'Where are you based and do you work remotely?',
     'faq.location.answer':
-      "I use Jest and React Testing Library for unit and integration tests, and both Cypress and Playwright for E2E. At ePages, I write tests for the storefront and the Commerce Cockpit admin system. It's a big part of keeping things reliable, especially in a monorepo where changes can affect multiple packages.",
-    'faq.languages.question': 'Are you open to new opportunities?',
+      "I'm based in Limassol, Cyprus, and work remotely for ePages, which is a German company. I'm comfortable working with distributed teams across different time zones—it's something I do daily. The setup works well for me, and I've got no issues with technical communication or collaboration when everyone's remote.",
+    'faq.languages.question': 'What languages do you speak?',
     'faq.languages.answer':
-      "I'm currently employed full-time at ePages and not actively job searching. That said, I'm always up for interesting conversations about web development, potential collaborations, or opportunities that align with my interests. If you want to connect, feel free to reach out.",
-    'faq.learning.question': 'What languages do you speak?',
-    'faq.learning.answer':
       'I speak English fluently (C1/C2 level) and Serbian natively. I work daily with distributed teams across different time zones, so no issues with technical communication or documentation in English.',
+    'faq.learning.question': 'What are you currently learning or exploring?',
+    'faq.learning.answer':
+      "Right now I'm diving into React 19 patterns and Server Components, exploring more of what Remix can do, and studying web accessibility (WCAG standards). Outside of work, I really enjoy building with Astro. This site is actually built with it. There's always something new to learn, which keeps things interesting.",
   },
 } as const;
 
