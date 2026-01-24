@@ -22,7 +22,7 @@ const navLinks = [
 ---
 
 <header
-  class="sticky top-0 z-[100] flex h-11 w-full items-center border-b border-gray-200/30 bg-white/80 px-4 backdrop-blur-md supports-backdrop-filter:bg-white/45"
+  class="fixed top-0 right-0 left-0 z-[100] flex h-11 items-center border-b border-gray-200/30 bg-white/80 px-4 backdrop-blur-md supports-backdrop-filter:bg-white/45"
   role="banner"
 >
   <!-- Skip to content link for accessibility -->
@@ -152,6 +152,7 @@ const navLinks = [
   const menuLinks = mobileMenu?.querySelectorAll('a');
 
   let isMenuOpen = false;
+  let scrollPosition = 0;
 
   function toggleMenu(): void {
     (menuButton as HTMLElement)?.blur();
@@ -184,7 +185,10 @@ const navLinks = [
       );
     });
 
-    document.body.classList.add('overflow-hidden');
+    scrollPosition = window.pageYOffset;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = '100%';
   }
 
   function closeMenu(): void {
@@ -200,7 +204,21 @@ const navLinks = [
       item.classList.add(...CLASSES.ITEM_HIDDEN);
     });
 
-    document.body.classList.remove('overflow-hidden');
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+
+    const htmlElement = document.documentElement;
+    const originalScrollBehavior = htmlElement.style.scrollBehavior;
+    htmlElement.style.scrollBehavior = 'auto';
+
+    const savedPosition = parseFloat(scrollY || '0') * -1;
+    window.scrollTo(0, savedPosition);
+
+    requestAnimationFrame(() => {
+      htmlElement.style.scrollBehavior = originalScrollBehavior;
+    });
   }
 
   // ============================================================================

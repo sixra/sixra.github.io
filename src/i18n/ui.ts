@@ -93,7 +93,7 @@ export const ui = {
     'about.experience.paragraph1':
       'Pre ePages-a, radio sam kao Frontend programer u FxPro, fintech kompaniji, od 2022. do 2023. Fokus je bio na trading platformama i finansijskim alatima izgrađenim sa Angular i Svelte. Kreirao sam landing stranice, marketing mikro-sajtove, email šablone za višejezične kampanje i interaktivne kalkulatore integrisane sa Highcharts.',
     'about.experience.paragraph2':
-      'Moja formalna obuka dolazi iz DCI Digital Career Institute u Berlinu, gde sam završio Full Stack Web Developer program 2021. Pre toga, stekao sam Bachelor of Business Administration sa MBS Business School, što mi je dalo osnovu u razumevanju kako preduzeća funkcionišu—koristan kontekst prilikom izgradnje softvera za poslovne korisnike.',
+      'Moja formalna obuka dolazi iz DCI Digital Career Institute u Hamburgu, gde sam završio Full Stack Web Developer program 2021. Pre toga, stekao sam Bachelor of Business Administration sa MBS Business School, što mi je dalo osnovu u razumevanju kako preduzeća funkcionišu—koristan kontekst prilikom izgradnje softvera za poslovne korisnike.',
     'about.skills.title': 'Veštine i tehnologije',
     'about.skills.paragraph1':
       'Svakodnevno, najviše radim sa React, TypeScript i Remix. Takođe sam proveo dosta vremena sa Angular, Svelte, Redux i Node.js. Testiranje je veliki deo onoga što radim—Jest za jedinične testove, Cypress i Playwright za E2E testiranje.',
@@ -178,7 +178,7 @@ export const ui = {
     // Experience & Background Q&A
     'faq.remote-work.question': 'Zašto ste prešli iz poslovnog menadžmenta u programiranje?',
     'faq.remote-work.answer':
-      'Želeo sam da gradim stvari i rešavam konkretne probleme. 2020. godine upisao sam DCI u Berlinu i napravio prelazak. Iskreno, bila je to jedna od najboljih odluka koje sam doneo. Postoji nešto stvarno zadovoljavajuće u rešavanju problema kroz kod i gledanju kako funkcionalnosti oživljavaju.',
+      'Želeo sam da gradim stvari i rešavam konkretne probleme. 2020. godine upisao sam DCI u Hamburgu i napravio prelazak. Iskreno, bila je to jedna od najboljih odluka koje sam doneo. Postoji nešto stvarno zadovoljavajuće u rešavanju problema kroz kod i gledanju kako funkcionalnosti oživljavaju.',
     'faq.availability.question': 'Da li ste otvoreni za nove prilike?',
     'faq.availability.answer':
       'Trenutno sam zaposlen puno radno vreme u ePages i ne tražim aktivno novi posao. Ipak, uvek sam raspoložen za interesantne razgovore o web razvoju, potencijalnim saradnjama, ili prilikama koje se poklapaju sa mojim interesovanjima. Ako želite da se povežemo, slobodno me kontaktirajte.',
@@ -283,7 +283,7 @@ export const ui = {
     'about.experience.paragraph1':
       'Пре ePages-а, радио сам као Frontend програмер у FxPro, fintech компанији, од 2022. до 2023. Фокус је био на trading платформама и финансијским алатима изграђеним са Angular и Svelte. Креирао сам landing странице, marketing микро-сајтове, email шаблоне за вишејезичне кампање и интерактивне калкулаторе интегрисане са Highcharts.',
     'about.experience.paragraph2':
-      'Моја формална обука долази из DCI Digital Career Institute у Берлину, где сам завршио Full Stack Web Developer програм 2021. Пре тога, стекао сам Bachelor of Business Administration са MBS Business School, што ми је дало основу у разумевању како предузећа функционишу—користан контекст приликом изградње софтвера за пословне кориснике.',
+      'Моја формална обука долази из DCI Digital Career Institute у Хамбургу, где сам завршио Full Stack Web Developer програм 2021. Пре тога, стекао сам Bachelor of Business Administration са MBS Business School, што ми је дало основу у разумевању како предузећа функционишу—користан контекст приликом изградње софтвера за пословне кориснике.',
     'about.skills.title': 'Вештине и технологије',
     'about.skills.paragraph1':
       'Свакодневно, највише радим са React, TypeScript и Remix. Такође сам провео доста времена са Angular, Svelte, Redux и Node.js. Тестирање је велики део онога што радим—Jest за јединичне тестове, Cypress и Playwright за E2E тестирање.',
@@ -368,7 +368,7 @@ export const ui = {
     // Experience & Background Q&A
     'faq.remote-work.question': 'Зашто сте прешли из пословног менаџмента у програмирање?',
     'faq.remote-work.answer':
-      'Желео сам да градим ствари и решавам конкретне проблеме. 2020. године уписао сам DCI у Берлину и направио прелазак. Искрено, била је то једна од најбољих одлука које сам донео. Постоји нешто стварно задовољавајуће у решавању проблема кроз код и гледању како функционалности оживљавају.',
+      'Желео сам да градим ствари и решавам конкретне проблеме. 2020. године уписао сам DCI у Хамбургу и направио прелазак. Искрено, била је то једна од најбољих одлука које сам донео. Постоји нешто стварно задовољавајуће у решавању проблема кроз код и гледању како функционалности оживљавају.',
     'faq.availability.question': 'Да ли сте отворени за нове прилике?',
     'faq.availability.answer':
       'Тренутно сам запослен пуно радно време у ePages и не тражим активно нови посао. Ипак, увек сам расположен за интересантне разговоре о веб развоју, потенцијалним сарадњама, или приликама које се поклапају са мојим интересовањима. Ако желите да се повежемо, слободно ме контактирајте.',
@@ -472,7 +472,7 @@ export const ui = {
     'about.experience.paragraph1':
       'Before ePages, I worked as a Frontend Developer at FxPro, a fintech company, from 2022 to 2023. The focus there was on trading platforms and financial tools built with Angular and Svelte. I created landing pages, marketing microsites, email templates for multilocale campaigns, and interactive calculators integrated with Highcharts.',
     'about.experience.paragraph2':
-      'My formal training came from DCI Digital Career Institute in Berlin, where I completed a Full Stack Web Developer program in 2021. Before that, I earned a Bachelor of Business Administration from MBS Business School, which gave me a foundation in how businesses work—helpful context when building software for business users.',
+      'My formal training came from DCI Digital Career Institute in Hamburg, where I completed a Full Stack Web Developer program in 2021. Before that, I earned a Bachelor of Business Administration from MBS Business School, which gave me a foundation in how businesses work—helpful context when building software for business users.',
     'about.skills.title': 'Skills & Technologies',
     'about.skills.paragraph1':
       "Day-to-day, I work mostly with React, TypeScript, and Remix. I've also spent considerable time with Angular, Svelte, Redux, and Node.js. Testing is a big part of what I do—Jest for unit tests, Cypress and Playwright for E2E testing.",
@@ -558,7 +558,7 @@ export const ui = {
     // Experience & Background Q&A
     'faq.remote-work.question': 'Why did you switch from business management to development?',
     'faq.remote-work.answer':
-      "I wanted to build things and solve concrete problems. In 2020, I enrolled at DCI in Berlin and made the switch. Honestly, it was one of the best decisions I've made. There's something really satisfying about solving problems through code and watching features come to life.",
+      "I wanted to build things and solve concrete problems. In 2020, I enrolled at DCI in Hamburg and made the switch. Honestly, it was one of the best decisions I've made. There's something really satisfying about solving problems through code and watching features come to life.",
     'faq.availability.question': 'Are you open to new opportunities?',
     'faq.availability.answer':
       "I'm currently employed full-time at ePages and not actively job searching. That said, I'm always up for interesting conversations about web development, potential collaborations, or opportunities that align with my interests. If you want to connect, feel free to reach out.",

@@ -5,13 +5,17 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  scrollbar-gutter: stable;
+}
+
 #about-preview {
-  scroll-margin-top: 5vh;
+  scroll-margin-top: 60px;
 }
 
 @media (min-width: 768px) {
   #about-preview {
-    scroll-margin-top: 15vh;
+    scroll-margin-top: 80px;
   }
 }
 
@@ -82,17 +86,11 @@ html {
 
 /* Full viewport hero section with vertical centering */
 .hero-section-fullscreen {
-  min-height: calc(100vh - 44px); /* Fallback */
-  min-height: calc(100dvh - 44px); /* Modern browsers */
+  min-height: calc(100vh - 44px);
+  min-height: calc(100svh - 44px);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .hero-section-fullscreen {
-    min-height: calc(100svh - 44px); /* Small viewport height for mobile */
-  }
 }
 
 /* Floating SVG background container */
