@@ -27,7 +27,6 @@ jobs:
     uses: ./.github/workflows/lint.yml
 
   unit-tests:
-    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
     uses: ./.github/workflows/unit-test.yml
 
   # Build - always run (needed for lighthouse artifact)
@@ -48,5 +47,5 @@ jobs:
 
   update-badges:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    needs: [lighthouse]
+    needs: [unit-tests, lighthouse]
     uses: ./.github/workflows/update-badges.yml

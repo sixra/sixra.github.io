@@ -2,7 +2,7 @@
 // Docs: https://developer.chrome.com/docs/workbox/caching-strategies-overview/
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
-const CACHE_NAME = 'sixra-v2.1';
+const CACHE_NAME = 'sixra-v2.2';
 
 const CACHE_CONFIG = {
   MAX_ENTRIES: {
