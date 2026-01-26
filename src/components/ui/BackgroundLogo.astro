@@ -1,7 +1,8 @@
 ---
+import OptimizedImage from '@components/ui/OptimizedImage.astro';
 import srLogo from '@assets/sr-logo.svg';
 ---
 
 <div class="page-background-logo" aria-hidden="true">
-  <img src={srLogo.src} alt="" />
+  <OptimizedImage src={srLogo} alt="" loading="lazy" fetchpriority="low" />
 </div>
