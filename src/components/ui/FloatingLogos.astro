@@ -30,11 +30,7 @@ const positions = [
 <div class="floating-logos-background" aria-hidden="true">
   {
     positions.map((pos, index) => (
-      <div
-        class="floating-logo"
-        style={`top: ${pos.top}%; ${pos.left !== undefined ? `left: ${pos.left}%` : `right: ${pos.right}%`}; --index: ${index};`}
-        set:html={logoSvg}
-      />
+      <div class={`floating-logo floating-logo-${index + 1}`} set:html={logoSvg} />
     ))
   }
 </div>
