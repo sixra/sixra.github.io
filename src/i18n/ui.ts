@@ -400,7 +400,7 @@ export const ui = {
     'home.bio.paragraph2':
       'Currently working as a JavaScript Developer at ePages, where I primarily use React, Remix, and TypeScript. My experience spans Angular, Svelte, Redux, Node.js, and testing frameworks like Jest, Cypress, and Playwright, along with build tools including Webpack and Gulp. In my free time, I enjoy building projects with Astro and diving deeper into Web Accessibility standards - always eager to learn and grow as a developer.',
     'home.cta.primary': 'View My Work',
-    'home.cta.secondary': 'About',
+    'home.cta.secondary': 'About Me',
     'home.about.title': 'About Me',
 
     'skills.title': 'Technologies & Skills',

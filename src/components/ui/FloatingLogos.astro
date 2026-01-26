@@ -1,8 +1,40 @@
 ---
-// Component that renders 20 floating logo instances
+// Component that renders 20 floating logo instances with strategic positioning
 import logoSvg from '@assets/floating.svg?raw';
+
+// Pre-defined positions for consistent, well-distributed layout
+const positions = [
+  { top: 8, left: 15 }, // upper left
+  { top: 48, left: 65 }, // middle right
+  { top: 75, left: 22 }, // lower left
+  { top: 28, right: 10 }, // upper right
+  { top: 15, left: 50 }, // upper center
+  { top: 62, right: 18 }, // middle right-lower
+  { top: 85, left: 58 }, // lower center
+  { top: 22, left: 80 }, // upper far right
+  { top: 52, left: 32 }, // middle center-left
+  { top: 5, right: 28 }, // very top right
+  { top: 38, left: 6 }, // middle left
+  { top: 70, right: 6 }, // lower right
+  { top: 10, left: 68 }, // upper center-right
+  { top: 58, left: 48 }, // middle center
+  { top: 90, left: 10 }, // very bottom left
+  { top: 40, right: 38 }, // middle right
+  { top: 18, left: 35 }, // upper center-left
+  { top: 78, right: 45 }, // lower center-right
+  { top: 32, left: 18 }, // middle left
+  { top: 65, left: 78 }, // lower right
+];
 ---
 
 <div class="floating-logos-background" aria-hidden="true">
-  {Array.from({ length: 20 }).map(() => <Fragment set:html={logoSvg} />)}
+  {
+    positions.map((pos, index) => (
+      <div
+        class="floating-logo"
+        style={`top: ${pos.top}%; ${pos.left !== undefined ? `left: ${pos.left}%` : `right: ${pos.right}%`}; --index: ${index};`}
+        set:html={logoSvg}
+      />
+    ))
+  }
 </div>

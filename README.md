@@ -55,6 +55,23 @@ pnpm build             # Production build
 pnpm preview           # Preview build locally
 ```
 
+## Commit Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>: <description>
+```
+
+**Types:**
+
+- `feat`: Add or update features
+- `fix`: Fix bugs
+- `refactor`: Restructure code
+- `test`: Add or update tests
+- `chore`: upgrade dependencies, update configs
+- `ci`: Update CI/CD
+
 ## Project Structure
 
 ```

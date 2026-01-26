@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
+import BackgroundLogo from '@components/ui/BackgroundLogo.astro';
 import FAQSection from '@templates/faq/FAQSection.astro';
 import FAQPageSchema from '@components/schemas/FAQPageSchema.astro';
 import type { ui, defaultLang } from '@i18n/ui';
@@ -25,6 +26,7 @@ const canonicalURL = new URL('/faq', Astro.site);
   <FAQPageSchema faqs={faqSchemaData} url={canonicalURL.toString()} />
   <Header />
   <main id="main-content" class="bg-gray-50">
+    <BackgroundLogo />
     <FAQSection />
   </main>
   <Footer />

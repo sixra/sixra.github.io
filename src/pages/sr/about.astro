@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
+import BackgroundLogo from '@components/ui/BackgroundLogo.astro';
 import AboutIntroSection from '@templates/about/AboutIntroSection.astro';
 import AboutCurrentWorkSection from '@templates/about/AboutCurrentWorkSection.astro';
 import AboutExperienceSection from '@templates/about/AboutExperienceSection.astro';
@@ -16,6 +17,7 @@ const t = useTranslations(lang);
 <Layout title={t('meta.about.title')} description={t('meta.about.description')}>
   <Header />
   <main id="main-content" class="bg-gray-50">
+    <BackgroundLogo />
     <AboutIntroSection />
     <AboutCurrentWorkSection />
     <AboutExperienceSection />

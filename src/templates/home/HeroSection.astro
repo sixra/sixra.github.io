@@ -4,6 +4,7 @@ import SectionContainer from '@components/sections/SectionContainer.astro';
 import SocialLinks from '@components/ui/SocialLinks.astro';
 import FloatingLogos from '@components/ui/FloatingLogos.astro';
 import { getLangFromUrl, useTranslations } from '@i18n/ui';
+import '@styles/floating-logos.css';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -38,7 +39,7 @@ const t = useTranslations(lang);
       <div class="flex justify-center">
         <a
           href="#about-preview"
-          class="rounded-lg border-2 border-gray-800 bg-transparent px-8 py-4 font-semibold text-gray-900 transition-colors hover:bg-gray-800 hover:text-gray-100 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-none"
+          class="rounded-lg bg-gray-900 px-8 py-4 font-semibold text-white transition-colors hover:bg-gray-800 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-none"
         >
           {t('home.cta.secondary')}
         </a>

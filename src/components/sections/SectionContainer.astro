@@ -9,7 +9,6 @@ interface Props {
   nested?: boolean;
   ariaLabelledby?: string;
   class?: string;
-  backgroundColor?: 'white' | 'gray' | 'none';
 }
 
 const {
@@ -20,50 +19,37 @@ const {
   nested = false,
   ariaLabelledby,
   class: className = '',
-  backgroundColor = 'gray',
 } = Astro.props;
 
 const ariaAttrs = ariaLabelledby ? { 'aria-labelledby': ariaLabelledby } : {};
-
-const bgClass =
-  backgroundColor === 'white' ? 'bg-white' : backgroundColor === 'gray' ? 'bg-gray-50' : '';
-
-// Auto-enable nested structure when background color is specified for full-width backgrounds
-const useNested = nested || backgroundColor !== 'none';
 ---
 
 {
-  useReveal ? (
-    <Reveal>
-      {useNested ? (
-        <section id={id} class={`${bgClass} ${padding} px-4 ${className}`} {...ariaAttrs}>
-          <div class={`${maxWidth} mx-auto`}>
-            <slot />
-          </div>
-        </section>
-      ) : (
-        <section
-          id={id}
-          class={`${bgClass} ${maxWidth} mx-auto px-4 ${padding} ${className}`}
-          {...ariaAttrs}
-        >
-          <slot />
-        </section>
-      )}
-    </Reveal>
-  ) : useNested ? (
-    <section id={id} class={`${bgClass} ${padding} px-4 ${className}`} {...ariaAttrs}>
+  nested ? (
+    <section id={id} class={`section-layer ${padding} px-4 ${className}`} {...ariaAttrs}>
       <div class={`${maxWidth} mx-auto`}>
-        <slot />
+        {useReveal ? (
+          <Reveal>
+            <slot />
+          </Reveal>
+        ) : (
+          <slot />
+        )}
       </div>
     </section>
   ) : (
     <section
       id={id}
-      class={`${bgClass} ${maxWidth} mx-auto px-4 ${padding} ${className}`}
+      class={`section-layer ${maxWidth} mx-auto px-4 ${padding} ${className}`}
       {...ariaAttrs}
     >
-      <slot />
+      {useReveal ? (
+        <Reveal>
+          <slot />
+        </Reveal>
+      ) : (
+        <slot />
+      )}
     </section>
   )
 }
