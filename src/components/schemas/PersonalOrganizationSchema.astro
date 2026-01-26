@@ -1,0 +1,25 @@
+---
+import { SITE } from '@config/site';
+
+interface Props {
+  siteName: string;
+  siteUrl: string;
+}
+
+const { siteName, siteUrl } = Astro.props;
+
+const personalOrganizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: siteName,
+  url: siteUrl,
+  logo: `${siteUrl}${SITE.image}`,
+};
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(personalOrganizationSchema)}
+/>

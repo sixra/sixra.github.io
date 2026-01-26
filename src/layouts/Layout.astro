@@ -5,6 +5,7 @@ import SEO from '@components/SEO.astro';
 import WebSiteSchema from '@components/schemas/WebSiteSchema.astro';
 import PersonSchema from '@components/schemas/PersonSchema.astro';
 import OrganizationSchema from '@components/schemas/OrganizationSchema.astro';
+import PersonalOrganizationSchema from '@components/schemas/PersonalOrganizationSchema.astro';
 import { getLangFromUrl, useTranslations } from '@i18n/ui';
 
 interface Props {
@@ -74,6 +75,13 @@ Astro.csp.insertScriptHash('sha256-DaDg5qPl4DZiHL2zzSCKynKM4QViM4UhUCdpgLAOYHA='
 
     <!-- WebSite Schema for Homepage -->
     {Astro.url.pathname === '/' && <WebSiteSchema siteName={SITE.title} siteUrl={SITE.url} />}
+
+    <!-- Personal Organization Schema for Homepage -->
+    {
+      Astro.url.pathname === '/' && (
+        <PersonalOrganizationSchema siteName={SITE.title} siteUrl={SITE.url} />
+      )
+    }
 
     <!-- Person Schema for Homepage -->
     {Astro.url.pathname === '/' && <PersonSchema />}

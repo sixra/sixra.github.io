@@ -1,4 +1,6 @@
 ---
+import { SITE } from '@config/site';
+
 /**
  * WebSite Schema
  * Helps search engines understand site structure
@@ -16,6 +18,7 @@ const webSiteSchema = {
   '@type': 'WebSite',
   name: siteName,
   url: siteUrl,
+  image: `${siteUrl}${SITE.image}`,
 };
 ---
 

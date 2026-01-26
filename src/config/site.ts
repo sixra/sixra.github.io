@@ -6,6 +6,7 @@ export const SITE = {
   url: 'https://sixra.dev',
   author: 'Ratko Simidzija',
   ogImage: '/sr-logo-og.png', // 1200×630px OG image for social sharing
+  image: '/web-app-manifest-512x512.png',
 };
 
 export const PERSON = {
