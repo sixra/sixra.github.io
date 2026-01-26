@@ -1,0 +1,32 @@
+#!/bin/sh
+
+protected_branch="refs/heads/main"
+should_run_checks=false
+
+while read local_ref local_sha remote_ref remote_sha
+do
+  if [ "$remote_ref" = "$protected_branch" ]; then
+    should_run_checks=true
+    break
+  fi
+done
+
+if [ "$should_run_checks" = false ]; then
+  echo "⚡ Skipping pre-push checks (not pushing to main)"
+  exit 0
+fi
+
+echo "🔍 Running pre-push checks for main branch..."
+echo ""
+
+# Build check
+echo "🔨 Build check..."
+pnpm build || exit 1
+echo ""
+
+# Unit tests
+echo "🧪 Running unit tests..."
+pnpm test || exit 1
+echo ""
+
+echo "✅ All pre-push checks passed!"
